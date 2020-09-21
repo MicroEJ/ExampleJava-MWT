@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=com.microej.example.mwt.attribute&amp;ivyXmlPath=module.ivy&amp;confs=*"/>
+	<classpathentry kind="src" path="src-adpgenerated/junit/java">
+		<attributes>
+			<attribute name="addonProcessorKind" value="generatedJava"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

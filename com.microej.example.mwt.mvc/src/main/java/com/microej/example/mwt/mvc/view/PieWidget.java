@@ -1,15 +1,13 @@
-/**
- * Java
- *
- * Copyright 2009-2018 IS2T. All rights reserved.
- * For demonstration purpose only.
- * IS2T PROPRIETARY. Use is subject to license terms.
+/*
+ * Copyright 2009-2020 MicroEJ Corp. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.mvc.view;
 
 import com.microej.example.mwt.mvc.model.PercentageModel;
 
 import ej.microui.display.GraphicsContext;
+import ej.microui.display.Painter;
 
 /**
  * A widget displaying a pie.
@@ -26,9 +24,7 @@ public class PieWidget extends PercentageWidget {
 	}
 
 	@Override
-	public void render(GraphicsContext g) {
-		super.render(g);
-
+	protected void renderContent(GraphicsContext g, int contentWidth, int contentHeight) {
 		// get value of the percentage
 		int percentage = getModel().getValue();
 
@@ -44,11 +40,11 @@ public class PieWidget extends PercentageWidget {
 
 		// draw pie fill
 		g.setColor(COLOR_CONTENT);
-		g.fillCircleArc(pieXCenter, pieYCenter, pieDiameter, 0, fillAngle);
+		Painter.fillCircleArc(g, pieXCenter, pieYCenter, pieDiameter, 0, fillAngle);
 
 		// draw pie border
 		g.setColor(COLOR_DATA_BORDER);
-		g.drawCircle(pieXCenter, pieYCenter, pieDiameter);
+		Painter.drawCircle(g, pieXCenter, pieYCenter, pieDiameter);
 
 	}
 }

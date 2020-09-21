@@ -1,68 +1,57 @@
-/**
- * Java
- *
- * Copyright 2016-2018 IS2T. All rights reserved.
- * For demonstration purpose only.
- * IS2T PROPRIETARY. Use is subject to license terms.
+/*
+ * Copyright 2016-2020 MicroEJ Corp. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.mvc.view;
 
-import ej.microui.display.GraphicsContext;
-import ej.mwt.Composite;
+import ej.mwt.Container;
+import ej.mwt.util.Size;
 
 /**
  * A view displaying different way to display a value.
  */
-public class CompositeView extends Composite {
+public class CompositeView extends Container {
 
-	private int xCross;
-	private int yCross;
 	private final TextWidget textWidget;
 	private final PieWidget pieWidget;
 	private final BarWidget barWidget;
 
+	private int xCross;
+	private int yCross;
+
 	/**
 	 * Instantiates a {@link CompositeView}.
-	 * @param textWidget 
-	 * 			the text widget.
-	 * @param pieWidget 
-	 * 			the pieWidget.
+	 * 
+	 * @param textWidget
+	 *            the text widget.
+	 * @param pieWidget
+	 *            the pieWidget.
 	 * @param barWidget
-	 *			the barWidget.
+	 *            the barWidget.
 	 */
 	public CompositeView(TextWidget textWidget, PieWidget pieWidget, BarWidget barWidget) {
-		super();
 		this.textWidget = textWidget;
 		this.pieWidget = pieWidget;
 		this.barWidget = barWidget;
-		add(textWidget);
-		add(pieWidget);
-		add(barWidget);
+		addChild(textWidget);
+		addChild(pieWidget);
+		addChild(barWidget);
 	}
 
 	@Override
-	public void setBounds(int x, int y, int width, int height) {
-		super.setBounds(x, y, width, height);
-
+	protected void layOutChildren(int contentWidth, int contentHeight) {
 		// Does the positioning
-		textWidget.setBounds(0, 0, xCross, yCross);
-		barWidget.setBounds(0, yCross, xCross, height - yCross);
-		pieWidget.setBounds(xCross, 0, width - xCross, height);
+		layOutChild(this.textWidget, 0, 0, this.xCross, this.yCross);
+		layOutChild(this.barWidget, 0, this.yCross, this.xCross, contentHeight - this.yCross);
+		layOutChild(this.pieWidget, this.xCross, 0, contentWidth - this.xCross, contentHeight);
 	}
 
-
 	@Override
-	public void validate(int widthHint, int heightHint) {
-		setPreferredSize(widthHint, heightHint);
+	protected void computeContentOptimalSize(Size size) {
 		// Validate widgets
-		textWidget.validate(xCross, yCross);
-		barWidget.validate(xCross, heightHint - yCross);
-		pieWidget.validate(widthHint - xCross, heightHint);
-	}
-
-	@Override
-	public void render(GraphicsContext g) {
-		// nothing to do
+		computeChildOptimalSize(this.textWidget, this.xCross, this.yCross);
+		computeChildOptimalSize(this.barWidget, this.xCross, size.getHeight() - this.yCross);
+		computeChildOptimalSize(this.pieWidget, size.getWidth() - this.xCross, size.getHeight());
 	}
 
 	/**
@@ -71,7 +60,7 @@ public class CompositeView extends Composite {
 	 * @return the xCross.
 	 */
 	public int getXCross() {
-		return xCross;
+		return this.xCross;
 	}
 
 	/**
@@ -90,7 +79,7 @@ public class CompositeView extends Composite {
 	 * @return the yCross.
 	 */
 	public int getYCross() {
-		return yCross;
+		return this.yCross;
 	}
 
 	/**

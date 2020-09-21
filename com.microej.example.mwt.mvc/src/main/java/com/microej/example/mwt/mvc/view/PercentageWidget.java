@@ -1,9 +1,6 @@
-/**
- * Java
- *
- * Copyright 2009-2018 IS2T. All rights reserved.
- * For demonstration purpose only.
- * IS2T PROPRIETARY. Use is subject to license terms.
+/*
+ * Copyright 2009-2020 MicroEJ Corp. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.mvc.view;
 
@@ -12,56 +9,47 @@ import java.util.Observer;
 
 import com.microej.example.mwt.mvc.model.PercentageModel;
 
-import ej.microui.display.Colors;
-import ej.microui.display.GraphicsContext;
+import ej.annotation.Nullable;
 import ej.mwt.Widget;
+import ej.mwt.util.Size;
 
 /**
- * 
+ *
  * A widget displaying a percentage.
  *
  */
 public abstract class PercentageWidget extends Widget implements Observer {
 
-	private static final int COLOR_BACKGROUND = Colors.WHITE;
-	private static final int COLOR_VIEW_BORDER = Colors.BLACK;
 	/**
 	 * The color used for the data border.
 	 */
-	protected static final int COLOR_DATA_BORDER = 0x506a96;	// blue
-	
-	/**
-	 * The model.
-	 */
-	protected PercentageModel model;
+	protected static final int COLOR_DATA_BORDER = 0x506a96; // blue
+
+	private final PercentageModel model;
 
 	/**
 	 * Instantiates a {@link PercentageWidget}.
-	 * @param model the model to follow.
+	 *
+	 * @param model
+	 *            the model to follow.
 	 */
 	public PercentageWidget(PercentageModel model) {
-		setModel(model);
+		this.model = model;
 	}
 
 	@Override
-	public void render(GraphicsContext g) {
-		int width = getWidth();
-		int height = getHeight();
-
-		// clear view
-		g.setColor(COLOR_BACKGROUND);
-		g.fillRect(0, 0, width, height);
-
-		// draw view borders
-		g.setColor(COLOR_VIEW_BORDER);
-		g.drawRect(0, 0, width - 1, height - 1);
-
+	protected void onAttached() {
+		this.model.addObserver(this);
 	}
 
 	@Override
-	public void validate(int widthHint, int heightHint) {
-		setPreferredSize(widthHint, heightHint);
+	protected void onDetached() {
+		this.model.deleteObserver(this);
+	}
 
+	@Override
+	protected void computeContentOptimalSize(Size size) {
+		// do nothing
 	}
 
 	/**
@@ -70,29 +58,12 @@ public abstract class PercentageWidget extends Widget implements Observer {
 	 * @return the model.
 	 */
 	public PercentageModel getModel() {
-		return model;
-	}
-
-	/**
-	 * Sets the model.
-	 *
-	 * @param model
-	 *            the model to set.
-	 */
-	public void setModel(PercentageModel model) {
-		if (this.model != null) {
-			this.model.deleteObserver(this);
-		}
-		this.model = model;
-		if (this.model != null) {
-			this.model.addObserver(this);
-		}
-
+		return this.model;
 	}
 
 	@Override
-	// Called when the model has changed
-	public void update(Observable o, Object arg) {
-		repaint();
+	public void update(Observable o, @Nullable Object arg) {
+		// Called when the model has changed
+		requestRender();
 	}
 }

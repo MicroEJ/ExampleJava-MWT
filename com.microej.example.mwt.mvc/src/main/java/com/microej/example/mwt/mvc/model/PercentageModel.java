@@ -1,9 +1,6 @@
-/**
- * Java
- *
- * Copyright 2009-2018 IS2T. All rights reserved.
- * For demonstration purpose only.
- * IS2T PROPRIETARY. Use is subject to license terms.
+/*
+ * Copyright 2009-2020 MicroEJ Corp. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.mvc.model;
 
@@ -19,21 +16,23 @@ public class PercentageModel extends Observable {
 	private static final int RANGE = 100;
 
 	private final Random random;
-	private int value = 0;
+
+	private int value;
 
 	/**
 	 * Instantiates a {@link PercentageModel}.
 	 */
 	public PercentageModel() {
-		random = new Random(System.currentTimeMillis());
+		this.random = new Random(System.currentTimeMillis());
+		this.value = 0;
 	}
 
 	private void increment(int incr) {
-		//get old value
+		// get old value
 		int oldValue = getValue();
-		//increment value
+		// increment value
 		int value = oldValue + incr;
-		//crop to [0..RANGE].
+		// crop to [0..RANGE].
 		if (value > RANGE) {
 			value = RANGE;
 		}
@@ -43,8 +42,8 @@ public class PercentageModel extends Observable {
 		update(value);
 	}
 
-	private void update(int value){
-		//update value and notify listeners
+	private void update(int value) {
+		// update value and notify listeners
 		if (getValue() != value) {
 			setValue(value);
 			setChanged();
@@ -84,7 +83,7 @@ public class PercentageModel extends Observable {
 	 * Sets a random value.
 	 */
 	public void random() {
-		update(random.nextInt(RANGE));
+		update(this.random.nextInt(RANGE + 1));
 	}
 
 	/**
@@ -93,7 +92,7 @@ public class PercentageModel extends Observable {
 	 * @return the value.
 	 */
 	public int getValue() {
-		return value;
+		return this.value;
 	}
 
 	/**
