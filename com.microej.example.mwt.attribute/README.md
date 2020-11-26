@@ -1,22 +1,24 @@
 # Overview
 
-This example shows how to customize the style of widgets using attributes
-selectors, similar to CSS.
+This example shows how to customize the style of widgets using attributes selectors, similar to CSS.
+
+The application contains only one page with two widgets: a button and a label.
+The label holds an attribute that can be `ON` or `OFF`.
+The button is used to toggle the value of the attribute in the label (and its text).
 
 # Usage
 
-The main class is [AttributeDemo.java](/src/main/java/com/microej/example/mwt/attribute/AttributeDemo.java).
+The main class is [AttributeDemo.java](src/main/java/com/microej/example/mwt/attribute/AttributeDemo.java).
 
 # Requirements
 
 This library requires the following Foundation Libraries:
 
-    @FOUNDATION_LIBRARIES_LIST@
+    EDC-1.3, BON-1.4, MICROUI-3.0, DRAWING-1.0
 
 # Dependencies
 
 _All dependencies are retrieved transitively by MicroEJ Module Manager_.
-
 
 # Source
 

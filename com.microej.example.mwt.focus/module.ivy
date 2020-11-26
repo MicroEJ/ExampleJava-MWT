@@ -3,7 +3,7 @@
 	Use of this source code is governed by a BSD-style license that can be found with this software.
 -->
 <ivy-module version="2.0" xmlns:ea="http://www.easyant.org" xmlns:ej="https://developer.microej.com" ej:version="2.0.0">
-	<info organisation="com.microej.example.mwt" module="focus" status="integration" revision="1.0.0">
+	<info organisation="com.microej.example.mwt" module="focus" status="integration" revision="1.0.1">
 		<ea:build organisation="com.is2t.easyant.buildtypes" module="build-firmware-singleapp" revision="1.+"/>
 		<ea:property name="application.main.class" value="com.microej.example.mwt.focus.FocusDemo"/>
 		<ea:property name="virtual.device.sim.only" value="set"/>
@@ -29,7 +29,5 @@
 		<dependency org="ej.api" name="microui" rev="3.0.0"/>
 
 		<dependency org="ej.library.ui" name="widget" rev="3.1.0"/>
-
-		<dependency org="com.is2t.CM7.referencePlatforms.st" name="STM32F746GDISCO-K1AU3" rev="4.0.0" conf="platform->platformDev" transitive="false"/>
 	</dependencies>
 </ivy-module>

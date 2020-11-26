@@ -1,24 +1,22 @@
 # Overview
 
 This example shows how to create and use an immutable stylesheet.
-The immutable stylesheet resolves the style for a widget with the same algorithm
-as the cascading stylesheet. The difference is that the immutable stylesheet
-is described in an immutable file instead of a Java code.
+The immutable stylesheet resolves the style for a widget with the same algorithm as the cascading stylesheet.
+The difference is that the immutable stylesheet is described in an immutable file instead of a Java code.
 
 # Usage
 
-The main class is [Main.java](/src/main/java/com/microej/example/mwt/immutablestylesheet/Main.java).
+The main class is [Main.java](src/main/java/com/microej/example/mwt/immutablestylesheet/Main.java).
 
 # Requirements
 
 This library requires the following Foundation Libraries:
 
-    @FOUNDATION_LIBRARIES_LIST@
+    EDC-1.3, BON-1.4, MICROUI-3.0, DRAWING-1.0
 
 # Dependencies
 
 _All dependencies are retrieved transitively by MicroEJ Module Manager_.
-
 
 # Source
 
