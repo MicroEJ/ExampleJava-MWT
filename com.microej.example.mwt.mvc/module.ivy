@@ -3,7 +3,7 @@
 	Use of this source code is governed by a BSD-style license that can be found with this software.
 -->
 <ivy-module version="2.0" xmlns:ea="http://www.easyant.org" xmlns:ej="https://developer.microej.com" ej:version="2.0.0">
-	<info organisation="com.microej.example.mwt" module="mvc" status="integration" revision="4.0.2">
+	<info organisation="com.microej.example.mwt" module="mvc" status="integration" revision="4.0.3">
 		<ea:build organisation="com.is2t.easyant.buildtypes" module="build-firmware-singleapp" revision="1.+"/>
 		<ea:property name="application.main.class" value="com.microej.example.mwt.mvc.ExampleMVC"/>
 		<ea:property name="virtual.device.sim.only" value="set"/>
@@ -25,10 +25,8 @@
 
 	<dependencies>
 		<dependency org="ej.api" name="edc" rev="1.3.3"/>
-		<dependency org="ej.api" name="microui" rev="3.0.1">
-			<exclude org="ej.api" module="edc" />
-		</dependency>
+		<dependency org="ej.api" name="microui" rev="3.0.3"/>
 
-		<dependency org="ej.library.ui" name="mwt" rev="3.1.0"/>
+		<dependency org="ej.library.ui" name="mwt" rev="3.1.1"/>
 	</dependencies>
 </ivy-module>
