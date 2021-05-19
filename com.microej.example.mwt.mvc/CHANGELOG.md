@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Cleaned up dependencies.
+- Clean up dependencies.
 
 ## 4.0.2 - 2020-12-04
 
@@ -70,5 +70,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial revision.
 
 ---  
-_Copyright 2016-2020 MicroEJ Corp. All rights reserved._  
+_Copyright 2016-2021 MicroEJ Corp. All rights reserved._  
 _Use of this source code is governed by a BSD-style license that can be found with this software._  

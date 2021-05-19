@@ -8,17 +8,23 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
 --------------------
+ 2.1.3 - 2021-05-10
+--------------------
+
+- Update this CHANGELOG.rst.
+
+--------------------
  2.1.2 - 2020-12-10
 --------------------
 
 Changed
 =======
 
-- Update the attributes example.
-- Update the focus example.
-- Update the immutable stylesheet example.
-- Update the lazy stylesheet example.
-- Update the MVC example.
+- Update the `attributes example <com.microej.example.mwt.attribute/CHANGELOG.md>`_ to ``1.0.3``.
+- Update the `focus example <com.microej.example.mwt.focus/CHANGELOG.md>`_ to ``1.0.3``.
+- Update the `immutable stylesheet example <com.microej.example.mwt.immutablestylesheet/CHANGELOG.md>`_ to ``1.0.3``.
+- Update the `lazy stylesheet example <com.microej.example.mwt.lazystylesheet/CHANGELOG.md>`_ to ``1.0.3``.
+- Update the `MVC example <com.microej.example.mwt.lazystylesheet/CHANGELOG.md>`_ to ``4.0.3``.
 
 --------------------
  2.1.1 - 2020-12-04
@@ -27,11 +33,11 @@ Changed
 Changed
 =======
 
-- Update the attributes example.
-- Update the focus example.
-- Update the immutable stylesheet example.
-- Update the lazy stylesheet example.
-- Update the MVC example.
+- Update the `attributes example <com.microej.example.mwt.attribute/CHANGELOG.md>`_ to ``1.0.2``.
+- Update the `focus example <com.microej.example.mwt.focus/CHANGELOG.md>`_ to ``1.0.2``.
+- Update the `immutable stylesheet example <com.microej.example.mwt.immutablestylesheet/CHANGELOG.md>`_ to ``1.0.2``.
+- Update the `lazy stylesheet example <com.microej.example.mwt.lazystylesheet/CHANGELOG.md>`_ to ``1.0.2``.
+- Update the `MVC example <com.microej.example.mwt.lazystylesheet/CHANGELOG.md>`_ to ``4.0.2``.
 
 --------------------
  2.1.0 - 2020-11-26
@@ -46,11 +52,11 @@ Changed
 =======
 
 - Update and rename README.rst.
-- Update the attributes example.
-- Update the focus example.
-- Update the immutable stylesheet example.
-- Update the lazy stylesheet example.
-- Update the MVC example.
+- Update the `attributes example <com.microej.example.mwt.attribute/CHANGELOG.md>`_ to ``1.0.1``.
+- Update the `focus example <com.microej.example.mwt.focus/CHANGELOG.md>`_ to ``1.0.1``.
+- Update the `immutable stylesheet example <com.microej.example.mwt.immutablestylesheet/CHANGELOG.md>`_ to ``1.0.1``.
+- Update the `lazy stylesheet example <com.microej.example.mwt.lazystylesheet/CHANGELOG.md>`_ to ``1.0.1``.
+- Update the `MVC example <com.microej.example.mwt.lazystylesheet/CHANGELOG.md>`_ to ``4.0.1``.
 
 --------------------
  2.0.0 - 2020-09-21
@@ -106,5 +112,5 @@ Added
 - Add a sliding widget example.
 
 .. ReStructuredText
-.. Copyright 2020 MicroEJ Corp. All rights reserved.
+.. Copyright 2020-2021 MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.
