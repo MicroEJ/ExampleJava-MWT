@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2020-2021 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.focus;
@@ -8,6 +8,7 @@ import ej.microui.display.GraphicsContext;
 import ej.microui.display.Painter;
 import ej.microui.event.Event;
 import ej.microui.event.EventGenerator;
+import ej.microui.event.generator.Buttons;
 import ej.microui.event.generator.Command;
 import ej.microui.event.generator.Pointer;
 import ej.mwt.Widget;
@@ -21,67 +22,77 @@ import ej.mwt.util.Size;
  */
 public class Joystick extends Widget {
 
+	private static final int OPTIMAL_SIZE = 50;
+	private static final float QUARTER = 0.25f;
+	private static final float HALF = 0.5f;
+	private static final float THREE_QUARTER = 0.75f;
+
 	private final Command command;
 
 	/**
 	 * Creates a joystick.
 	 */
 	public Joystick() {
+		super(true);
 		Command command = EventGenerator.get(Command.class, 0);
 		if (command == null) {
 			command = new Command();
 			command.addToSystemPool();
 		}
 		this.command = command;
-		setEnabled(true);
 	}
 
 	@Override
 	protected void computeContentOptimalSize(Size availableSize) {
-		availableSize.setSize(50, 50);
+		availableSize.setSize(OPTIMAL_SIZE, OPTIMAL_SIZE);
 	}
 
 	@Override
 	protected void renderContent(GraphicsContext g, int contentWidth, int contentHeight) {
 		Style style = getStyle();
 		g.setColor(style.getColor());
-		Painter.drawLine(g, 0, 0, contentWidth / 4, contentHeight / 4);
-		Painter.drawLine(g, 3 * contentWidth / 4, 3 * contentHeight / 4, contentWidth, contentHeight);
-		Painter.drawLine(g, contentWidth, 0, 3 * contentWidth / 4, contentHeight / 4);
-		Painter.drawLine(g, contentWidth / 4, 3 * contentHeight / 4, 0, contentHeight);
-		Painter.drawRectangle(g, contentWidth / 4, contentHeight / 4, contentWidth / 2, contentHeight / 2);
+
+		int quarterWidth = (int) (contentWidth * QUARTER);
+		int quarterHeight = (int) (contentHeight * QUARTER);
+		int halfWidth = (int) (contentWidth * HALF);
+		int halfHeight = (int) (contentHeight * HALF);
+		int threeQuarterWidth = (int) (contentWidth * THREE_QUARTER);
+		int threeQuarterHeight = (int) (contentHeight * THREE_QUARTER);
+
+		Painter.drawLine(g, 0, 0, quarterWidth, quarterHeight);
+		Painter.drawLine(g, threeQuarterWidth, threeQuarterHeight, contentWidth, contentHeight);
+		Painter.drawLine(g, contentWidth, 0, threeQuarterWidth, quarterHeight);
+		Painter.drawLine(g, quarterWidth, threeQuarterHeight, 0, contentHeight);
+		Painter.drawRectangle(g, quarterWidth, quarterHeight, halfWidth, halfHeight);
 	}
 
 	@Override
 	public boolean handleEvent(int event) {
-		if (Event.getType(event) == Pointer.EVENT_TYPE && Pointer.isReleased(event)) {
+		if (Event.getType(event) == Pointer.EVENT_TYPE && Buttons.isReleased(event)) {
 			Pointer pointer = (Pointer) Event.getGenerator(event);
 
-			int relativeX = pointer.getX() - getAbsoluteX();
-			int relativeY = pointer.getY() - getAbsoluteY();
+			float shiftRatioX = getShiftRatio(pointer.getX(), getAbsoluteX(), getWidth());
+			float shiftRatioY = getShiftRatio(pointer.getY(), getAbsoluteY(), getHeight());
 
-			int width = this.getWidth();
-			int height = this.getHeight();
-
-			int centerX = width / 2;
-			int centerY = height / 2;
-
-			float shiftRatioX = (float) (centerX - relativeX) / centerX;
-			float shiftRatioY = (float) (centerY - relativeY) / centerY;
-
-			if (Math.abs(shiftRatioX) < 0.5f && Math.abs(shiftRatioY) < 0.5f) {
+			if (Math.abs(shiftRatioX) < HALF && Math.abs(shiftRatioY) < HALF) {
 				this.command.send(Command.SELECT);
-			} else if (shiftRatioX > 0.5f && shiftRatioX > shiftRatioY && shiftRatioX > -shiftRatioY) {
+			} else if (shiftRatioX > HALF && shiftRatioX > shiftRatioY && shiftRatioX > -shiftRatioY) {
 				this.command.send(Command.LEFT);
-			} else if (-shiftRatioX > 0.5f && -shiftRatioX > shiftRatioY && -shiftRatioX > -shiftRatioY) {
+			} else if (-shiftRatioX > HALF && -shiftRatioX > shiftRatioY && -shiftRatioX > -shiftRatioY) {
 				this.command.send(Command.RIGHT);
-			} else if (shiftRatioY > 0.5f && shiftRatioY > shiftRatioX && shiftRatioY > -shiftRatioX) {
+			} else if (shiftRatioY > HALF && shiftRatioY > shiftRatioX && shiftRatioY > -shiftRatioX) {
 				this.command.send(Command.UP);
-			} else if (-shiftRatioY > 0.5f && -shiftRatioY > shiftRatioX && -shiftRatioY > -shiftRatioX) {
+			} else if (-shiftRatioY > HALF && -shiftRatioY > shiftRatioX && -shiftRatioY > -shiftRatioX) {
 				this.command.send(Command.DOWN);
 			}
 		}
 		return super.handleEvent(event);
+	}
+
+	private float getShiftRatio(int pointerCoordinate, int absoluteCoordinate, int size) {
+		int relativeCoordinate = pointerCoordinate - absoluteCoordinate;
+		int centerCoordinate = size / 2;
+		return (float) (centerCoordinate - relativeCoordinate) / centerCoordinate;
 	}
 
 }

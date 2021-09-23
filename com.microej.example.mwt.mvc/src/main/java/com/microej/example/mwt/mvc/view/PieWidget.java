@@ -1,7 +1,7 @@
 /*
- * Copyright 2009-2020 MicroEJ Corp. All rights reserved.
- * Use of this source code is governed by a BSD-style license that can be found with this software.
- */
+* Copyright 2009-2021 MicroEJ Corp. All rights reserved.
+* Use of this source code is governed by a BSD-style license that can be found with this software.
+*/
 package com.microej.example.mwt.mvc.view;
 
 import com.microej.example.mwt.mvc.model.PercentageModel;
@@ -14,10 +14,13 @@ import ej.microui.display.Painter;
  */
 public class PieWidget extends PercentageWidget {
 
-	public static final int COLOR_CONTENT = 0x2fc19c; // green
+	private static final int COLOR_CONTENT = 0x2fc19c; // green
 
 	/**
+	 * Creates a pie widget.
+	 *
 	 * @param model
+	 *            the percentage model.
 	 */
 	public PieWidget(PercentageModel model) {
 		super(model);

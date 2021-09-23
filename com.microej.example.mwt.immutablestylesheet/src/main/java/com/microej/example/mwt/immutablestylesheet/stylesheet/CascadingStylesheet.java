@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2015-2021 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.immutablestylesheet.stylesheet;
@@ -36,7 +36,7 @@ public class CascadingStylesheet implements Stylesheet {
 		private final Selector selector;
 		private final ImmutableStyle style;
 
-		// Never used
+		// Never used because instances are immutable but necessary to compile.
 		private SelectorStyle(SelectorStyle selectorStyle) {
 			this.selector = selectorStyle.selector;
 			this.style = selectorStyle.style;
@@ -46,7 +46,7 @@ public class CascadingStylesheet implements Stylesheet {
 	private final ImmutableStyle defaultStyle;
 	private final SelectorStyle[] selectorsStyles;
 
-	// Never used
+	// Never used because instance is immutable but necessary to compile.
 	private CascadingStylesheet(CascadingStylesheet stylesheet) {
 		this.defaultStyle = stylesheet.defaultStyle;
 		this.selectorsStyles = stylesheet.selectorsStyles;

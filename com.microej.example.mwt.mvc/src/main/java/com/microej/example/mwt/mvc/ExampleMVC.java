@@ -1,5 +1,5 @@
 /*
- * Copyright 2009-2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2009-2021 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.mvc;
@@ -33,6 +33,12 @@ public class ExampleMVC {
 	private static final int COLOR_BACKGROUND = Colors.WHITE;
 	private static final int COLOR_VIEW_BORDER = Colors.BLACK;
 
+	/**
+	 * Starts the MVC example.
+	 *
+	 * @param args
+	 *            not used.
+	 */
 	public static void main(String[] args) {
 		// start microUI
 		MicroUI.start();
@@ -75,7 +81,7 @@ public class ExampleMVC {
 		desktop.requestShow();
 	}
 
-	public static Stylesheet createStylesheet() {
+	private static Stylesheet createStylesheet() {
 		CascadingStylesheet stylesheet = new CascadingStylesheet();
 
 		EditableStyle style = stylesheet.getDefaultStyle();

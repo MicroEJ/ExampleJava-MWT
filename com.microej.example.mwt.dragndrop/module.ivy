@@ -1,0 +1,33 @@
+<!--
+	Copyright 2021 MicroEJ Corp. All rights reserved.
+	Use of this source code is governed by a BSD-style license that can be found with this software.
+-->
+<ivy-module version="2.0" xmlns:ea="http://www.easyant.org" xmlns:ej="https://developer.microej.com" ej:version="2.0.0">
+	<info organisation="com.microej.example.mwt" module="dragndrop" status="integration" revision="1.0.0">
+		<ea:build organisation="com.is2t.easyant.buildtypes" module="build-firmware-singleapp" revision="1.+"/>
+		<ea:property name="application.main.class" value="com.microej.example.mwt.attribute.AttributeDemo"/>
+		<ea:property name="virtual.device.sim.only" value="set"/>
+	</info>
+
+	<configurations defaultconfmapping="default->default;provided->provided;vdruntime->default">
+		<conf name="default" visibility="public" description="Runtime dependencies to other artifacts"/>
+		<conf name="provided" visibility="public" description="Compile-time dependencies to APIs provided by the platform"/>
+		<conf name="documentation" visibility="public" description="Documentation related to the artifact (javadoc, PDF)"/>
+		<conf name="platform" visibility="public" description="Source code"/>
+		<conf name="vdruntime" visibility="public" description="Source code"/>
+		<conf name="source" visibility="public" description="Source code"/>
+		<conf name="dist" visibility="public" description="Contains extra files like README.md, licenses"/>
+		<conf name="test" visibility="private" description="Dependencies for test execution. It is not required for normal use of the application, and is only available for the test compilation and execution phases."/>
+	</configurations>
+
+	<publications>
+	</publications>
+
+	<dependencies>
+		<dependency org="ej.api" name="edc" rev="1.3.3"/>
+		<dependency org="ej.api" name="microui" rev="3.0.3"/>
+
+		<dependency org="ej.library.ui" name="mwt" rev="3.3.0"/>
+		<dependency org="ej.library.ui" name="widget" rev="4.1.0"/>
+	</dependencies>
+</ivy-module>

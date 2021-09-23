@@ -1,5 +1,5 @@
 /*
- * Copyright 2009-2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2009-2021 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.mvc.view;
@@ -17,10 +17,10 @@ public class BarWidget extends PercentageWidget {
 	private static final int COLOR_CONTENT = 0xe86337; // orange
 
 	/**
-	 * Instantiates a {@link BarWidget}.
-	 * 
+	 * Creates a bar widget.
+	 *
 	 * @param model
-	 *            the model to follow.
+	 *            the percentage model.
 	 */
 	public BarWidget(PercentageModel model) {
 		super(model);

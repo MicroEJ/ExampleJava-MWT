@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2020-2021 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.lazystylesheet;
@@ -27,6 +27,8 @@ import ej.widget.basic.Button;
 public class Main {
 
 	private static final String SOURCE_LIGHT_20 = "/fonts/source_l_14px-20px-26h.ejf";
+	private static final int BUTTON_MARGIN = 20;
+	private static final int BORDER_THICKNESS = 2;
 
 	/**
 	 * Starts the application.
@@ -47,8 +49,8 @@ public class Main {
 		stylesheet.setSelectorStyle(new TypeSelector(Button.class), new StyleFactory() {
 			@Override
 			public void applyOn(EditableStyle style) {
-				style.setMargin(new UniformOutline(20));
-				style.setBorder(new RectangularBorder(Colors.SILVER, 2));
+				style.setMargin(new UniformOutline(BUTTON_MARGIN));
+				style.setBorder(new RectangularBorder(Colors.SILVER, BORDER_THICKNESS));
 			}
 		});
 
@@ -57,7 +59,7 @@ public class Main {
 					@Override
 					public void applyOn(EditableStyle style) {
 						style.setColor(Colors.RED);
-						style.setBorder(new RectangularBorder(Colors.RED, 2));
+						style.setBorder(new RectangularBorder(Colors.RED, BORDER_THICKNESS));
 						style.setBackground(new RectangularBackground(Colors.SILVER));
 					}
 				});

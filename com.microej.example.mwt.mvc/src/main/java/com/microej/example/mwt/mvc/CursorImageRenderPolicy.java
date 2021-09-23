@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2020-2021 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.mvc;
@@ -14,13 +14,28 @@ import ej.mwt.Desktop;
 import ej.mwt.Widget;
 import ej.mwt.render.DefaultRenderPolicy;
 
+/**
+ * This render policy draws the image of a cursor at the pointer's position.
+ */
 public class CursorImageRenderPolicy extends DefaultRenderPolicy {
 
+	/**
+	 * The width of the cursor's image.
+	 */
 	public static final int CURSOR_WIDTH = 16;
+	/**
+	 * The height of the cursor's image.
+	 */
 	public static final int CURSOR_HEIGHT = 16;
 
 	private final Image cursorImage;
 
+	/**
+	 * Creates a cursor image render policy.
+	 *
+	 * @param desktop
+	 *            the desktop
+	 */
 	public CursorImageRenderPolicy(Desktop desktop) {
 		super(desktop);
 		this.cursorImage = Image.getImage("/images/mouse_cursor.png");

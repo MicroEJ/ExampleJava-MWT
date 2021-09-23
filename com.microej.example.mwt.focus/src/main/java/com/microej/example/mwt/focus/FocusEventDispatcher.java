@@ -1,13 +1,13 @@
 /*
- * Copyright 2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2020-2021 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.focus;
 
 import ej.annotation.Nullable;
 import ej.microui.event.Event;
+import ej.microui.event.generator.Buttons;
 import ej.microui.event.generator.Command;
-import ej.microui.event.generator.Pointer;
 import ej.mwt.Container;
 import ej.mwt.Desktop;
 import ej.mwt.Widget;
@@ -27,12 +27,12 @@ import ej.mwt.event.PointerEventDispatcher;
 public class FocusEventDispatcher extends PointerEventDispatcher {
 
 	/**
-	 * The "focus gained" action.<br>
+	 * The "focus gained" action.
 	 */
 	public static final int FOCUS_GAINED = 0x01;
 
 	/**
-	 * The "focus lost" action.<br>
+	 * The "focus lost" action.
 	 */
 	public static final int FOCUS_LOST = 0x02;
 
@@ -85,20 +85,13 @@ public class FocusEventDispatcher extends PointerEventDispatcher {
 	public boolean dispatchEvent(int event) {
 		// handle pointer events
 		if (super.dispatchEvent(event)) {
-			if (!Pointer.isReleased(event)) {
+			if (!Buttons.isReleased(event)) {
 				Widget pressedWidget = getPressedHierarchyLeaf();
 				if (pressedWidget == null || isFocusable(pressedWidget)) {
 					focus(pressedWidget);
 				}
 			}
 			return true;
-		}
-
-		// check that the focused widget is still attached to the desktop
-		Widget focusedWidget = this.focusedWidget;
-		if (focusedWidget != null && !getDesktop().containsWidget(focusedWidget)) {
-			focus(null);
-			focusedWidget = null;
 		}
 
 		// handle focus change events
@@ -115,11 +108,20 @@ public class FocusEventDispatcher extends PointerEventDispatcher {
 			}
 		}
 
-		// send event to focused widget
-		if (focusedWidget != null) {
-			return sendEventToWidget(focusedWidget, event);
-		}
+		return sendToFocusedWidget(event);
+	}
 
+	private boolean sendToFocusedWidget(int event) {
+		Widget focusedWidget = this.focusedWidget;
+		if (focusedWidget != null) {
+			if (!getDesktop().containsWidget(focusedWidget)) {
+				// Widget is no more attached to the desktop.
+				focus(null);
+				focusedWidget = null;
+			} else {
+				return sendEventToWidget(focusedWidget, event);
+			}
+		}
 		return false;
 	}
 

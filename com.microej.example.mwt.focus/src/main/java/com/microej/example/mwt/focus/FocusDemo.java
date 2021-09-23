@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2020-2021 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.focus;
@@ -7,7 +7,9 @@ package com.microej.example.mwt.focus;
 import ej.microui.MicroUI;
 import ej.microui.display.Colors;
 import ej.microui.event.Event;
+import ej.microui.event.generator.Command;
 import ej.mwt.Desktop;
+import ej.mwt.event.DesktopEventGenerator;
 import ej.mwt.event.EventDispatcher;
 import ej.mwt.style.EditableStyle;
 import ej.mwt.style.background.RectangularBackground;
@@ -25,6 +27,8 @@ import ej.widget.container.List;
  * This demo illustrates the usage of focus to navigate through an application.
  */
 public class FocusDemo {
+
+	private static final int NUMBER_OF_ITEMS = 5;
 
 	// Prevents initialization.
 	private FocusDemo() {
@@ -56,7 +60,7 @@ public class FocusDemo {
 		dock.addChildOnTop(new Label("Menu"));
 
 		List list = new List(LayoutOrientation.VERTICAL);
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < NUMBER_OF_ITEMS; i++) {
 			final String item = "Item " + i;
 			Button menuItem = new VerboseButton(item);
 			menuItem.setOnClickListener(new OnClickListener() {
@@ -98,14 +102,18 @@ public class FocusDemo {
 
 	private static class VerboseButton extends Button {
 
-		public VerboseButton(String text) {
+		private VerboseButton(String text) {
 			super(text);
 		}
 
 		@Override
 		public boolean handleEvent(int event) {
-			if (Event.getType(event) == FocusEventGenerator.EVENT_TYPE) {
-				int action = FocusEventGenerator.getAction(event);
+			if (Event.getType(event) == Command.EVENT_TYPE && Event.getData(event) == Command.SELECT) {
+				handleClick();
+				return true;
+			}
+			if (Event.getType(event) == DesktopEventGenerator.EVENT_TYPE) {
+				int action = DesktopEventGenerator.getAction(event);
 				if (action == FocusEventDispatcher.FOCUS_GAINED) {
 					System.out.println("Focus gained on '" + getText() + "'");
 				} else if (action == FocusEventDispatcher.FOCUS_LOST) {

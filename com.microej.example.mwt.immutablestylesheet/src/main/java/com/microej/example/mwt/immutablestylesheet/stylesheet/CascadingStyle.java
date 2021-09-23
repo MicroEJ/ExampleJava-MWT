@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2019-2021 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.immutablestylesheet.stylesheet;
@@ -73,19 +73,19 @@ import ej.mwt.style.Style;
 
 	/* package */ CascadingStyle(ImmutableStyle style) {
 		super();
-		setDimension(style.dimension);
-		setHorizontalAlignment(style.horizontalAlignment);
-		setVerticalAlignment(style.verticalAlignment);
-		setMargin(style.margin);
-		setBorder(style.border);
-		setPadding(style.padding);
-		setBackground(style.background);
-		setColor(style.color);
-		setFont(style.fontProvider.getFont());
+		super.setDimension(style.dimension);
+		super.setHorizontalAlignment(style.horizontalAlignment);
+		super.setVerticalAlignment(style.verticalAlignment);
+		super.setMargin(style.margin);
+		super.setBorder(style.border);
+		super.setPadding(style.padding);
+		super.setBackground(style.background);
+		super.setColor(style.color);
+		super.setFont(style.fontProvider.getFont());
 		for (int fieldId = style.extraFields.length - 1; fieldId >= 0; fieldId--) {
 			Object fieldValue = style.extraFields[fieldId];
 			if (fieldValue != null) {
-				setExtraObject(fieldId, fieldValue);
+				super.setExtraObject(fieldId, fieldValue);
 			}
 		}
 	}

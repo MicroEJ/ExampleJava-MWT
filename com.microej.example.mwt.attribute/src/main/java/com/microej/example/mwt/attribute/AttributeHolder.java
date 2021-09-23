@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2020-2021 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.attribute;
@@ -19,5 +19,5 @@ public interface AttributeHolder {
 	 * @return the value of the attribute or <code>null</code> if the attribute does not exist.
 	 */
 	@Nullable
-	public String getAttribute(String attribute);
+	String getAttribute(String attribute);
 }

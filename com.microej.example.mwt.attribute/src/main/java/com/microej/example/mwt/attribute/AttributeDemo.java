@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2020-2021 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.attribute;
@@ -30,6 +30,8 @@ public class AttributeDemo {
 	private static final String ATTRIBUTE = "attribute";
 	private static final String ON = "ON";
 	private static final String OFF = "OFF";
+
+	private static final int LIST_PADDING = 80;
 
 	// Prevents initialization.
 	private AttributeDemo() {
@@ -81,7 +83,7 @@ public class AttributeDemo {
 		style.setVerticalAlignment(Alignment.VCENTER);
 
 		style = stylesheet.getSelectorStyle(new TypeSelector(List.class));
-		style.setPadding(new UniformOutline(80));
+		style.setPadding(new UniformOutline(LIST_PADDING));
 
 		style = stylesheet.getSelectorStyle(new AttributeValueSelector(ATTRIBUTE, ON));
 		style.setBackground(new RectangularBackground(Colors.RED));

@@ -1,3 +1,15 @@
+.. image:: https://shields.microej.com/endpoint?url=https://repository.microej.com/packages/badges/sdk_5.4.json
+   :alt: sdk_5.4 badge
+   :align: left
+
+.. image:: https://shields.microej.com/endpoint?url=https://repository.microej.com/packages/badges/arch_7.12.json
+   :alt: arch_7.12 badge
+   :align: left
+   
+.. image:: https://shields.microej.com/endpoint?url=https://repository.microej.com/packages/badges/gui_3.json
+   :alt: gui_3 badge
+   :align: left
+
 ==========
  Overview
 ==========
@@ -16,12 +28,26 @@ Those examples are developed as standalone applications and as such can be run b
 This example shows how to customize the style of widgets using attributes selectors, similar to CSS.
 Please refer to its `README.md <com.microej.example.mwt.attribute/README.md>`_ for more information.
 
+-----------------------------------
+ com.microej.example.mwt.drawgdrop
+-----------------------------------
+
+This example shows how to drag'n'drop some widgets in a container.
+Please refer to its `README.md <com.microej.example.mwt.dragndrop/README.md>`_ for more information.
+
 -------------------------------
  com.microej.example.mwt.focus
 -------------------------------
 
 This example shows how to introduce focus management in your project.
 Please refer to its `README.md <com.microej.example.mwt.focus/README.md>`_ for more information.
+
+-------------------------------------------
+ com.microej.example.mwt.bufferedimagepool
+-------------------------------------------
+
+This example shows how to use a pool of BufferedImages to share them across an application.
+Please refer to its `README.md <com.microej.example.mwt.bufferedimagepool/README.md>`_ for more information.
 
 ---------------------------------------------
  com.microej.example.mwt.immutablestylesheet
@@ -44,6 +70,20 @@ Please refer to its `README.md <com.microej.example.mwt.lazystylesheet/README.md
 This example shows how to develop responsive widgets using a MVC design pattern and how to display a cursor image representing the pointer.
 Please refer to its `README.md <com.microej.example.mwt.mvc/README.md>`_ for more information.
 
+-------------------------------
+ com.microej.example.mwt.popup
+-------------------------------
+
+This example shows how to develop an application with popups.
+Please refer to its `README.md <com.microej.example.mwt.popup/README.md>`_ for more information.
+
+--------------------------------------
+ com.microej.example.mwt.virtualwatch
+--------------------------------------
+
+This example shows how to simulate a device (smartwatch here) on another device.
+Please refer to its `README.md <com.microej.example.mwt.virtualwatch/README.md>`_ for more information.
+
 .. ReStructuredText
-.. Copyright 2020 MicroEJ Corp. All rights reserved.
+.. Copyright 2020-2021 MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.

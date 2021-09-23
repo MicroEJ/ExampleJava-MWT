@@ -8,6 +8,27 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
 --------------------
+ 2.2.0 - 2021-09-20
+--------------------
+
+Changed
+=======
+
+- Update the `attributes example <com.microej.example.mwt.attribute/CHANGELOG.md>`_ to ``1.0.4``.
+- Update the `focus example <com.microej.example.mwt.focus/CHANGELOG.md>`_ to ``1.0.4``.
+- Update the `immutable stylesheet example <com.microej.example.mwt.immutablestylesheet/CHANGELOG.md>`_ to ``1.0.4``.
+- Update the `lazy stylesheet example <com.microej.example.mwt.lazystylesheet/CHANGELOG.md>`_ to ``1.0.4``.
+- Update the `MVC example <com.microej.example.mwt.lazystylesheet/CHANGELOG.md>`_ to ``4.0.4``.
+
+Added
+=====
+
+- Add an example demonstrating the usage of a pool of image buffers - please refer to its `CHANGELOG.md <com.microej.example.mwt.bufferedimagepool/CHANGELOG.md>`_.
+- Add an example demonstrating the usage of popups - please refer to its `CHANGELOG.md <com.microej.example.mwt.popup/CHANGELOG.md>`_.
+- Add an example demonstrating the simulation of a device (smartwatch) on another device - please refer to its `CHANGELOG.md <com.microej.example.mwt.virtualwatch/CHANGELOG.md>`_.
+- Add an example demonstrating a drag'n'drop in a container - please refer to its `CHANGELOG.md <com.microej.example.mwt.dragndrop/CHANGELOG.md>`_.
+
+--------------------
  2.1.3 - 2021-05-10
 --------------------
 

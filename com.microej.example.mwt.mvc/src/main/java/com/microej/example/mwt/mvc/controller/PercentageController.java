@@ -1,5 +1,5 @@
 /*
- * Copyright 2009-2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2009-2021 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.mvc.controller;
@@ -14,6 +14,9 @@ import ej.microui.event.generator.Buttons;
 import ej.microui.event.generator.Command;
 import ej.microui.event.generator.Pointer;
 
+/**
+ * The percentage controller modifies a percentage model when commands are received.
+ */
 public class PercentageController implements EventHandler {
 
 	private final CompositeView view;
@@ -27,7 +30,7 @@ public class PercentageController implements EventHandler {
 	private int previousY;
 
 	/**
-	 * Instantiates a {@link PercentageController}.
+	 * Creates a percentage controller.
 	 *
 	 * @param view
 	 *            the view to display the percentage.
