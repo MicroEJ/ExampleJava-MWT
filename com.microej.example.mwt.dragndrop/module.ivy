@@ -1,11 +1,11 @@
 <!--
-	Copyright 2021 MicroEJ Corp. All rights reserved.
+	Copyright 2021-2022 MicroEJ Corp. All rights reserved.
 	Use of this source code is governed by a BSD-style license that can be found with this software.
 -->
 <ivy-module version="2.0" xmlns:ea="http://www.easyant.org" xmlns:ej="https://developer.microej.com" ej:version="2.0.0">
 	<info organisation="com.microej.example.mwt" module="dragndrop" status="integration" revision="1.0.0">
 		<ea:build organisation="com.is2t.easyant.buildtypes" module="build-firmware-singleapp" revision="1.+"/>
-		<ea:property name="application.main.class" value="com.microej.example.mwt.attribute.AttributeDemo"/>
+		<ea:property name="application.main.class" value="com.microej.example.mwt.dragndrop.DragNDropDemo"/>
 		<ea:property name="virtual.device.sim.only" value="set"/>
 	</info>
 

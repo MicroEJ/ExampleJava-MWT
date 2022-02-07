@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2015-2022 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.lazystylesheet.style;
@@ -45,8 +45,6 @@ public class CascadingLazyStylesheet implements Stylesheet {
 		}
 	}
 
-	private static final int CACHE_SIZE = 10;
-
 	/**
 	 * Default style.
 	 */
@@ -56,11 +54,6 @@ public class CascadingLazyStylesheet implements Stylesheet {
 	 */
 	// The list ensures the definition order.
 	private SelectorStyle[] selectorsStyles;
-	/**
-	 * Cached styles.
-	 */
-	private final CascadingStyle[] stylesCache;
-	private byte stylesCount;
 
 	/**
 	 * Creates a new cascading stylesheet.
@@ -69,17 +62,10 @@ public class CascadingLazyStylesheet implements Stylesheet {
 		// Equivalent of #reset()
 		this.defaultStyle = new EditableStyle();
 		this.selectorsStyles = new SelectorStyle[0];
-		this.stylesCache = new CascadingStyle[CACHE_SIZE];
 	}
 
 	@Override
 	public Style getStyle(Widget widget) {
-		CascadingStyle resultingStyle = computeStyle(widget);
-
-		return getCachedStyle(resultingStyle);
-	}
-
-	private CascadingStyle computeStyle(Widget widget) {
 		CascadingStyle resultingStyle = new CascadingStyle(this.defaultStyle);
 
 		// Global style selectors only.
@@ -102,43 +88,6 @@ public class CascadingLazyStylesheet implements Stylesheet {
 				selectorStyle.factory.applyOn(resultingStyle);
 			}
 		}
-	}
-
-	/**
-	 * Search a style in the cache to avoid having several instances of the same style.
-	 * <p>
-	 * If an equal style is available, it is returned, otherwise the given style is cached.
-	 *
-	 * @param style
-	 *            the style to search.
-	 * @return a cached style.
-	 */
-	private Style getCachedStyle(CascadingStyle style) {
-		CascadingStyle result = style;
-		CascadingStyle[] stylesCache = this.stylesCache;
-		byte stylesCount = this.stylesCount;
-		for (int i = 0; i < stylesCount; i++) {
-			CascadingStyle cachedStyle = stylesCache[i];
-			assert cachedStyle != null;
-			if (style.hashCode() == cachedStyle.hashCode() && style.equals(cachedStyle)) {
-				if (i != 0) {
-					// Bring this style forward.
-					stylesCache[i] = stylesCache[i - 1];
-					stylesCache[i - 1] = cachedStyle;
-				}
-				return cachedStyle;
-			}
-		}
-		// Not found add it at the center.
-		int half = stylesCount >> 1;
-		System.arraycopy(stylesCache, half, stylesCache, half + 1,
-				Math.min(stylesCount, stylesCache.length - 1) - half);
-		stylesCache[half] = style;
-		if (stylesCount != stylesCache.length) {
-			++stylesCount;
-		}
-		this.stylesCount = stylesCount;
-		return result;
 	}
 
 	/**

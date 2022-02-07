@@ -14,5 +14,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Create an histogram widget that uses a screenshot on a buffered image to draw the background grid pattern.
 
 ---  
-_Copyright 2021 MicroEJ Corp. All rights reserved._  
+_Copyright 2021-2022 MicroEJ Corp. All rights reserved._  
 _Use of this source code is governed by a BSD-style license that can be found with this software._  

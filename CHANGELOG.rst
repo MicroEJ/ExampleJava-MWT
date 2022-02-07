@@ -8,6 +8,24 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
 --------------------
+ 2.3.0 - 2022-01-21
+--------------------
+
+Added
+=====
+
+- Add an example demonstrating a context sensitive container - please refer to its `CHANGELOG.md <com.microej.example.mwt.contextsensitive/CHANGELOG.md>`_.
+- Add an example demonstrating the usage of a container that can mask its children - please refer to its `CHANGELOG.md <com.microej.example.mwt.maskinggrid/CHANGELOG.md>`_.
+- Add an example demonstrating how to add and remove widgets within a container - please refer to its `CHANGELOG.md <com.microej.example.mwt.removewidget/CHANGELOG.md>`_.
+- Add an example demonstrating a stack container - please refer to its `CHANGELOG.md <com.microej.example.mwt.stackcontainer/CHANGELOG.md>`_.
+- Add an example demonstrating the usage of a container that can stash its children - please refer to its `CHANGELOG.md <com.microej.example.mwt.stashinggrid/CHANGELOG.md>`_.
+
+Changed
+=======
+
+- Update the `lazy stylesheet example <com.microej.example.mwt.lazystylesheet/CHANGELOG.md>`_ to ``1.0.5``.
+
+--------------------
  2.2.0 - 2021-09-20
 --------------------
 
@@ -133,5 +151,5 @@ Added
 - Add a sliding widget example.
 
 .. ReStructuredText
-.. Copyright 2020-2021 MicroEJ Corp. All rights reserved.
+.. Copyright 2020-2022 MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.
