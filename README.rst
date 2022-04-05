@@ -99,10 +99,17 @@ This example shows how to add and remove widgets in a container.
 Please refer to its `README.md <com.microej.example.mwt.removewidget/README.md>`_ for more information.
 
 ----------------------------------------
+ com.microej.example.mwt.slidecontainer
+----------------------------------------
+
+This example shows a slide container that slides its children. It uses the content of the display to speed-up animations.
+Please refer to its `README.md <com.microej.example.mwt.slidecontainer/README.md>`_ for more information.
+
+----------------------------------------
  com.microej.example.mwt.stackcontainer
 ----------------------------------------
 
-This example shows a stack container that uses the content of the display to speed-up animations.
+This example shows a stack container that stacks its children one above the other with animations. It uses the content of the display to speed-up animations.
 Please refer to its `README.md <com.microej.example.mwt.stackcontainer/README.md>`_ for more information.
 
 --------------------------------------

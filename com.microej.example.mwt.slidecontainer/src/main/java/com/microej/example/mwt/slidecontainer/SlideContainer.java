@@ -4,7 +4,7 @@
  * Copyright 2021-2022 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
-package com.microej.example.mwt.stackcontainer;
+package com.microej.example.mwt.slidecontainer;
 
 import ej.annotation.Nullable;
 import ej.bon.XMath;
@@ -25,16 +25,17 @@ import ej.widget.util.motion.MotionAnimation;
 import ej.widget.util.motion.MotionAnimationListener;
 
 /**
- * A stack container holds several children on top of each other.
+ * A slide container holds several children.
  * <p>
  * Each child is the size of the content of the container. Hence, only the last added child is visible.
  * <p>
- * When adding a child, an animation is done by translating the new child from the right of the screen. When removing a
- * child, an animation is done by translating the departing child to the right of the screen.
+ * When adding a child, an animation is done by translating the departing child and the new one from the right of the
+ * screen. When removing a child, an animation is done by translating the departing child and the new one to the right
+ * of the screen.
  * <p>
  * The last added child can be removed by swiping it to the right of the screen.
  */
-public class StackContainer extends Container {
+public class SlideContainer extends Container {
 
 	private static final int TRANSITION_DURATION = 400;
 
@@ -52,9 +53,9 @@ public class StackContainer extends Container {
 	private int position;
 
 	/**
-	 * Creates a stack container.
+	 * Creates a slide container.
 	 */
-	public StackContainer() {
+	public SlideContainer() {
 		super(true);
 	}
 
@@ -82,7 +83,7 @@ public class StackContainer extends Container {
 				layOutChild(child, contentWidth, 0, contentWidth, contentHeight);
 
 				this.moving = true;
-				showChild(child, contentWidth);
+				showChild(formerChild, child, contentWidth);
 			}
 		}
 	}
@@ -108,10 +109,14 @@ public class StackContainer extends Container {
 		if (childrenCount == 0) {
 			return;
 		}
-		this.moving = true;
 		final Widget child = getChild(childrenCount - 1);
-		setHiddenChild(child);
-		hideChild(child, 0);
+		if (childrenCount > 1) {
+			this.moving = true;
+			setHiddenChild(child);
+			Widget newlyVisibleChild = getChild(childrenCount - 2);
+			newlyVisibleChild.setPosition(-getContentWidth(), 0);
+			hideChild(newlyVisibleChild, child, 0);
+		}
 	}
 
 	/**
@@ -122,9 +127,9 @@ public class StackContainer extends Container {
 	 * @param startX
 	 *            the initial position.
 	 */
-	private void showChild(final Widget child, int startX) {
+	private void showChild(Widget formerChild, Widget child, int startX) {
 		this.previousPosition = startX;
-		doAnimation(child, startX, 0);
+		doAnimation(formerChild, child, startX, 0);
 	}
 
 	/**
@@ -135,13 +140,13 @@ public class StackContainer extends Container {
 	 * @param startX
 	 *            the initial position.
 	 */
-	private void hideChild(final Widget child, int startX) {
+	private void hideChild(Widget newlyVisibleChild, Widget child, int startX) {
 		removeChild(child);
 		this.previousPosition = startX;
-		doAnimation(child, startX, getContentWidth());
+		doAnimation(newlyVisibleChild, child, startX, getContentWidth());
 	}
 
-	private void doAnimation(final Widget child, int startX, int endX) {
+	private void doAnimation(final Widget leftChild, final Widget rightChild, int startX, int endX) {
 		// Save initial position for rendering.
 		this.position = startX;
 		// Compute duration depending on the distance to walk.
@@ -150,8 +155,9 @@ public class StackContainer extends Container {
 		this.motionAnimation = new MotionAnimation(getDesktop().getAnimator(), motion, new MotionAnimationListener() {
 			@Override
 			public void tick(int value, boolean finished) {
-				StackContainer.this.position = value;
-				child.setPosition(value, 0);
+				SlideContainer.this.position = value;
+				leftChild.setPosition(value - getContentWidth(), 0);
+				rightChild.setPosition(value, 0);
 				requestRender();
 				if (finished) {
 					restore();
@@ -191,17 +197,17 @@ public class StackContainer extends Container {
 			int contentHeight = getContentHeight();
 			// "Move" the display from the previous position to the new one.
 			int shift = this.position - this.previousPosition;
-			int copyWidth = contentWidth - (shift > 0 ? this.position : this.previousPosition);
-			Painter.drawDisplayRegion(g, contentX + this.previousPosition, contentY, copyWidth, contentHeight,
-					contentX + this.position, contentY);
+			g.setClip(contentX, contentY, contentWidth, contentHeight);
+			Painter.drawDisplayRegion(g, contentX, contentY, contentWidth - shift, contentHeight, contentX + shift,
+					contentY);
 			// Draws only the modified part of the container and its children.
 			if (shift > 0) {
-				// The top widget is moved to the right.
-				// Draw the previously hidden part of the widget below.
-				g.setClip(contentX + this.previousPosition, contentY, shift, contentHeight);
+				// The widgets are moved to the right.
+				// Draw the part of the left widget previously outside of the container.
+				g.setClip(contentX, contentY, shift, contentHeight);
 			} else {
-				// The top widget is moved to the left.
-				// Draw the part of the top widget previously outside of the container.
+				// The widgets are moved to the left.
+				// Draw the part of the right widget previously outside of the container.
 				g.setClip(contentX + contentWidth + shift, contentY, -shift, contentHeight);
 			}
 			super.render(g);
@@ -314,6 +320,7 @@ public class StackContainer extends Container {
 		if (this.pressed && shiftX != 0) {
 			int shiftY = pointerY - this.previousY;
 			Widget lastChild = getChild(childrenCount - 1);
+			Widget penultimateChild = getChild(childrenCount - 2);
 			if (!this.moving && Math.abs(shiftX) > Math.abs(shiftY) && shiftX > 0) {
 				// Start to drag when moving horizontally.
 				stopAnimation();
@@ -324,6 +331,7 @@ public class StackContainer extends Container {
 			if (this.moving) {
 				int childX = lastChild.getX() + shiftX;
 				childX = XMath.limit(childX, 0, contentWidth);
+				penultimateChild.setPosition(childX - getContentWidth(), 0);
 				lastChild.setPosition(childX, 0);
 				this.position = childX;
 				requestRender();
@@ -341,15 +349,16 @@ public class StackContainer extends Container {
 			MicroUI.callSerially(new Runnable() {
 				@Override
 				public void run() {
-					StackContainer.this.pressed = false;
+					SlideContainer.this.pressed = false;
 					Widget lastChild = getChild(childrenCount - 1);
 					int childX = lastChild.getX();
 					// Depending on the position of the child with the middle of the container, keep it or remove it.
+					Widget penultimateChild = getChild(childrenCount - 2);
 					if (childX < contentWidth / 2) {
-						doAnimation(lastChild, childX, 0);
+						doAnimation(penultimateChild, lastChild, childX, 0);
 					} else {
 						removeChild(lastChild);
-						doAnimation(lastChild, childX, contentWidth);
+						doAnimation(penultimateChild, lastChild, childX, contentWidth);
 					}
 				}
 			});

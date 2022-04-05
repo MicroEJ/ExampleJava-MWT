@@ -8,6 +8,15 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
 --------------------
+ 2.4.0 - 2022-04-05
+--------------------
+
+Added
+=====
+
+- Add an example demonstrating a slide container - please refer to its `CHANGELOG.md <com.microej.example.mwt.slidecontainer/CHANGELOG.md>`_.
+
+--------------------
  2.3.0 - 2022-01-21
 --------------------
 
