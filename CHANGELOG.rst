@@ -8,6 +8,17 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
 --------------------
+ 2.4.1 - 2022-10-18
+--------------------
+
+Changed
+=======
+
+- Update the `buffered image pool example <com.microej.example.mwt.bufferedimagepool/CHANGELOG.md>`_ to ``1.0.1``.
+- Update the `slide container example <com.microej.example.mwt.slidecontainer/CHANGELOG.md>`_ to ``1.0.1``.
+- Update the `stack container example <com.microej.example.mwt.stackcontainer/CHANGELOG.md>`_ to ``1.0.1``.
+
+--------------------
  2.4.0 - 2022-04-05
 --------------------
 

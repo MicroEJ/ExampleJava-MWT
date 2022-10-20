@@ -17,18 +17,43 @@ import ej.microui.display.Display;
 public class BufferedImagePool {
 
 	@Nullable
-	private static BufferedImagePoolContext context;
+	private static BufferedImagePool instance;
 
 	private static final int COUNT = Constants.getInt("com.microej.example.mwt.bufferedimagepool.count"); //$NON-NLS-1$
 
+	private static final int NOT_FOUND = -1;
+
+	private final Object monitor;
+	private final BufferedImage[] images;
+	private final Object[] owners;
+
 	private BufferedImagePool() {
+		Display display = Display.getDisplay();
+		int displayWidth = display.getWidth();
+		int displayHeight = display.getHeight();
+		this.images = new BufferedImage[COUNT];
+		for (int i = 0; i < COUNT; i++) {
+			this.images[i] = new BufferedImage(displayWidth, displayHeight);
+		}
+		this.owners = new Object[COUNT];
+		this.monitor = new Object();
 	}
 
 	/**
 	 * Initializes the buffered image pool.
+	 * <p>
+	 * Should be called at the startup of the application to allocate the buffers at the beginning of the images memory.
 	 */
 	public static void initialize() {
-		getContext();
+		getInstance();
+	}
+
+	private static BufferedImagePool getInstance() {
+		if (BufferedImagePool.instance != null) {
+			return BufferedImagePool.instance;
+		}
+		BufferedImagePool.instance = new BufferedImagePool();
+		return BufferedImagePool.instance;
 	}
 
 	/**
@@ -46,7 +71,31 @@ public class BufferedImagePool {
 	 *             if there is no more images available.
 	 */
 	public static BufferedImage acquireImage(Object owner) throws OutOfImagesException {
-		return getContext().acquireImage(owner);
+		return getInstance().acquireBuffer(owner);
+	}
+
+	private BufferedImage acquireBuffer(Object owner) throws OutOfImagesException {
+		synchronized (this.monitor) {
+			int index = searchForAFreeBuffer(owner);
+			if (index == NOT_FOUND) {
+				throw new OutOfImagesException();
+			}
+			this.owners[index] = owner;
+			BufferedImage image = this.images[index];
+			assert image != null;
+			return image;
+		}
+	}
+
+	private int searchForAFreeBuffer(Object owner) {
+		Object[] owners = this.owners;
+		for (int i = 0; i < COUNT; i++) {
+			Object ownerCandidate = owners[i];
+			if (ownerCandidate == owner || ownerCandidate == null) {
+				return i;
+			}
+		}
+		return NOT_FOUND;
 	}
 
 	/**
@@ -56,7 +105,20 @@ public class BufferedImagePool {
 	 *            the object that releases the image.
 	 */
 	public static void releaseImage(Object owner) {
-		getContext().releaseImage(owner);
+		getInstance().releaseBuffer(owner);
+	}
+
+	private void releaseBuffer(Object owner) {
+		synchronized (this.monitor) {
+			Object[] owners = this.owners;
+			for (int i = 0; i < COUNT; i++) {
+				Object ownerCandidate = owners[i];
+				if (ownerCandidate == owner) {
+					owners[i] = null;
+					return;
+				}
+			}
+		}
 	}
 
 	/**
@@ -70,91 +132,27 @@ public class BufferedImagePool {
 	 *             if the new owner already owns a shared image.
 	 */
 	public static void changeImageOwner(Object formerOwner, Object newOwner) {
-		getContext().changeImageOwner(formerOwner, newOwner);
+		getInstance().changeBufferOwner(formerOwner, newOwner);
 	}
 
-	private static BufferedImagePoolContext getContext() {
-		if (BufferedImagePool.context != null) {
-			return BufferedImagePool.context;
-		}
-		BufferedImagePool.context = new BufferedImagePoolContext();
-		return BufferedImagePool.context;
-	}
-
-	private static class BufferedImagePoolContext {
-
-		private static final int NOT_FOUND = -1;
-
-		private final Object monitor;
-		private final BufferedImage[] images;
-		private final Object[] owners;
-
-		private BufferedImagePoolContext() {
-			Display display = Display.getDisplay();
-			int displayWidth = display.getWidth();
-			int displayHeight = display.getHeight();
-			this.images = new BufferedImage[COUNT];
+	private void changeBufferOwner(Object formerOwner, Object newOwner) {
+		synchronized (this.monitor) {
+			Object[] owners = this.owners;
+			// Ensure that newOwner does not already own a image.
 			for (int i = 0; i < COUNT; i++) {
-				this.images[i] = new BufferedImage(displayWidth, displayHeight);
-			}
-			this.owners = new Object[COUNT];
-			this.monitor = new Object();
-		}
-
-		private BufferedImage acquireImage(Object owner) throws OutOfImagesException {
-			synchronized (this.monitor) {
-				int index = searchForAFreeImage(owner);
-				if (index == NOT_FOUND) {
-					throw new OutOfImagesException();
+				Object ownerCandidate = owners[i];
+				if (ownerCandidate == newOwner) {
+					throw new IllegalArgumentException();
 				}
-				this.owners[index] = owner;
-				BufferedImage image = this.images[index];
-				assert image != null;
-				return image;
 			}
-		}
-
-		private int searchForAFreeImage(Object owner) {
 			for (int i = 0; i < COUNT; i++) {
-				Object ownerCandidate = this.owners[i];
-				if (ownerCandidate == owner || ownerCandidate == null) {
-					return i;
-				}
-			}
-			return NOT_FOUND;
-		}
-
-		public void releaseImage(Object owner) {
-			synchronized (this.monitor) {
-				for (int i = 0; i < COUNT; i++) {
-					Object ownerCandidate = this.owners[i];
-					if (ownerCandidate == owner) {
-						this.owners[i] = null;
-						return;
-					}
+				Object ownerCandidate = owners[i];
+				if (ownerCandidate == formerOwner) {
+					owners[i] = newOwner;
+					return;
 				}
 			}
 		}
-
-		public void changeImageOwner(Object formerOwner, Object newOwner) {
-			synchronized (this.monitor) {
-				// Ensure that newOwner does not already own a image.
-				for (int i = 0; i < COUNT; i++) {
-					Object ownerCandidate = this.owners[i];
-					if (ownerCandidate == newOwner) {
-						throw new IllegalArgumentException();
-					}
-				}
-				for (int i = 0; i < COUNT; i++) {
-					Object ownerCandidate = this.owners[i];
-					if (ownerCandidate == formerOwner) {
-						this.owners[i] = newOwner;
-						return;
-					}
-				}
-			}
-		}
-
 	}
 
 }

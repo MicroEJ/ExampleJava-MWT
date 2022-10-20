@@ -18,6 +18,8 @@ import ej.motion.Motion;
 import ej.motion.quad.QuadEaseOutFunction;
 import ej.mwt.Container;
 import ej.mwt.Widget;
+import ej.mwt.animation.Animation;
+import ej.mwt.animation.Animator;
 import ej.mwt.event.DesktopEventGenerator;
 import ej.mwt.event.PointerEventDispatcher;
 import ej.mwt.util.Size;
@@ -39,7 +41,9 @@ public class StackContainer extends Container {
 	private static final int TRANSITION_DURATION = 400;
 
 	@Nullable
-	private MotionAnimation motionAnimation;
+	private Animation draggedAnimation;
+	@Nullable
+	private MotionAnimation releasedAnimation;
 
 	// Drag management.
 	private boolean pressed;
@@ -49,6 +53,7 @@ public class StackContainer extends Container {
 
 	// Rendering management.
 	private int previousPosition;
+	private int draggedPosition;
 	private int position;
 
 	/**
@@ -66,7 +71,7 @@ public class StackContainer extends Container {
 	@Override
 	public void addChild(final Widget child) {
 		// Stop any animation/refresh running.
-		stopAnimation();
+		stopAnimations();
 
 		super.addChild(child);
 
@@ -96,6 +101,12 @@ public class StackContainer extends Container {
 		}
 	}
 
+	@Override
+	protected void onHidden() {
+		super.onHidden();
+		stopAnimations();
+	}
+
 	/**
 	 * Removes the last added child.
 	 * <p>
@@ -103,7 +114,7 @@ public class StackContainer extends Container {
 	 * right.
 	 */
 	public void removeLast() {
-		stopAnimation();
+		stopAnimations();
 		int childrenCount = getChildrenCount();
 		if (childrenCount == 0) {
 			return;
@@ -147,24 +158,27 @@ public class StackContainer extends Container {
 		// Compute duration depending on the distance to walk.
 		long duration = TRANSITION_DURATION * Math.abs(endX - startX) / getContentWidth();
 		Motion motion = new Motion(QuadEaseOutFunction.INSTANCE, startX, endX, duration);
-		this.motionAnimation = new MotionAnimation(getDesktop().getAnimator(), motion, new MotionAnimationListener() {
+		this.releasedAnimation = new MotionAnimation(getDesktop().getAnimator(), motion, new MotionAnimationListener() {
 			@Override
 			public void tick(int value, boolean finished) {
-				StackContainer.this.position = value;
-				child.setPosition(value, 0);
-				requestRender();
+				updatePosition(value, child);
 				if (finished) {
 					restore();
 				}
 			}
 		});
-		this.motionAnimation.start();
+		this.releasedAnimation.start();
 	}
 
-	private void stopAnimation() {
-		MotionAnimation motionAnimation = this.motionAnimation;
-		if (motionAnimation != null) {
-			motionAnimation.stop();
+	private void stopAnimations() {
+		Animation draggedAnimation = this.draggedAnimation;
+		if (draggedAnimation != null) {
+			getAnimator().stopAnimation(draggedAnimation);
+			draggedAnimation = null;
+		}
+		MotionAnimation releasedAnimation = this.releasedAnimation;
+		if (releasedAnimation != null) {
+			releasedAnimation.stop();
 			restore();
 		}
 	}
@@ -304,9 +318,20 @@ public class StackContainer extends Container {
 			this.pressed = true;
 			this.previousX = pointerX;
 			this.previousY = pointerY;
+			this.draggedPosition = this.position;
 		} else {
 			this.pressed = false;
 		}
+	}
+
+	private Animator getAnimator() {
+		return getDesktop().getAnimator();
+	}
+
+	private void updatePosition(int value, Widget child) {
+		this.position = value;
+		child.setPosition(value, 0);
+		requestRender();
 	}
 
 	private boolean onPointerDragged(int contentWidth, int childrenCount, int pointerX, int pointerY) {
@@ -316,17 +341,26 @@ public class StackContainer extends Container {
 			Widget lastChild = getChild(childrenCount - 1);
 			if (!this.moving && Math.abs(shiftX) > Math.abs(shiftY) && shiftX > 0) {
 				// Start to drag when moving horizontally.
-				stopAnimation();
+				stopAnimations();
+				final Widget rightChild = getChild(childrenCount - 1);
+				Animation draggedAnimation = new Animation() {
+					@Override
+					public boolean tick(long platformTimeMillis) {
+						int value = (StackContainer.this.draggedPosition + StackContainer.this.previousPosition) / 2;
+						updatePosition(value, rightChild);
+						return StackContainer.this.pressed;
+					}
+				};
+				this.draggedAnimation = draggedAnimation;
+				getAnimator().startAnimation(draggedAnimation);
 				setHiddenChild(lastChild);
 				this.moving = true;
 				this.previousPosition = 0;
 			}
 			if (this.moving) {
-				int childX = lastChild.getX() + shiftX;
+				int childX = this.draggedPosition + shiftX;
 				childX = XMath.limit(childX, 0, contentWidth);
-				lastChild.setPosition(childX, 0);
-				this.position = childX;
-				requestRender();
+				this.draggedPosition = childX;
 
 				this.previousX = pointerX;
 				this.previousY = pointerY;
