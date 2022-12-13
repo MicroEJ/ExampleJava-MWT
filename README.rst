@@ -21,110 +21,110 @@ Those examples are developed as standalone applications and as such can be run b
  Details
 =========
 
------------------------------------
- com.microej.example.mwt.attribute
------------------------------------
+---------------------
+ attribute-selectors
+---------------------
 
-This example shows how to customize the style of widgets using attributes selectors, similar to CSS.
-Please refer to its `README.md <com.microej.example.mwt.attribute/README.md>`_ for more information.
+This example shows how to customize the style of widgets using attribute selectors, similar to CSS Attribute Selectors.
+Please refer to its `README.md <attribute-selectors/README.md>`_ for more information.
 
------------------------------------
- com.microej.example.mwt.drawgdrop
------------------------------------
-
-This example shows how to drag'n'drop some widgets in a container.
-Please refer to its `README.md <com.microej.example.mwt.dragndrop/README.md>`_ for more information.
-
--------------------------------
- com.microej.example.mwt.focus
--------------------------------
-
-This example shows how to introduce focus management in your project.
-Please refer to its `README.md <com.microej.example.mwt.focus/README.md>`_ for more information.
-
--------------------------------------------
- com.microej.example.mwt.bufferedimagepool
--------------------------------------------
+---------------------
+ buffered-image-pool
+---------------------
 
 This example shows how to use a pool of BufferedImages to share them across an application.
-Please refer to its `README.md <com.microej.example.mwt.bufferedimagepool/README.md>`_ for more information.
+Please refer to its `README.md <buffered-image-pool/README.md>`_ for more information.
 
------------------------------------------
- com.microej.example.mwt.contextsensitive
------------------------------------------
+----------------------------
+ context-sensitive-container
+----------------------------
 
 This example shows a container that adapts to the context (i.e., the device configuration), by changing how the children are laid out.
-Please refer to its `README.md <com.microej.example.mwt.contextsensitive/README.md>`_ for more information.
+Please refer to its `README.md <context-sensitive-container/README.md>`_ for more information.
 
----------------------------------------------
- com.microej.example.mwt.immutablestylesheet
----------------------------------------------
+---------------
+ drag-and-drop
+---------------
+
+This example shows how to drag'n'drop some widgets in a container.
+Please refer to its `README.md <drag-and-drop/README.md>`_ for more information.
+
+-------
+ focus
+-------
+
+This example shows how to introduce focus management in your project.
+Please refer to its `README.md <focus/README.md>`_ for more information.
+
+----------------------
+ immutable-stylesheet
+----------------------
 
 This example shows how to define a stylesheet in an immutable file rather than with Java code.
-Please refer to its `README.md <com.microej.example.mwt.immutablestylesheet/README.md>`_ for more information.
+Please refer to its `README.md <immutable-stylesheet/README.md>`_ for more information.
 
-----------------------------------------
- com.microej.example.mwt.lazystylesheet
-----------------------------------------
+-----------------
+ lazy-stylesheet
+-----------------
 
 This example shows how to use a lazy stylesheet rather than the default stylesheet implementation.
-Please refer to its `README.md <com.microej.example.mwt.lazystylesheet/README.md>`_ for more information.
+Please refer to its `README.md <lazy-stylesheet/README.md>`_ for more information.
 
--------------------------------------
- com.microej.example.mwt.maskinggrid
--------------------------------------
+--------------
+ masking-grid
+--------------
 
-This example shows a container that is able to mask its children.
-Please refer to its `README.md <com.microej.example.mwt.maskinggrid/README.md>`_ for more information.
+This example shows a container (e.g., a grid) that can mask its children.
+Please refer to its `README.md <masking-grid/README.md>`_ for more information.
 
------------------------------
- com.microej.example.mwt.mvc
------------------------------
+-----
+ mvc
+-----
 
-This example shows how to develop responsive widgets using a MVC design pattern and how to display a cursor image representing the pointer.
-Please refer to its `README.md <com.microej.example.mwt.mvc/README.md>`_ for more information.
+This example shows how to develop responsive widgets using an MVC design pattern and how to display a cursor image representing the pointer.
+Please refer to its `README.md <mvc/README.md>`_ for more information.
 
--------------------------------
- com.microej.example.mwt.popup
--------------------------------
+-------
+ popup
+-------
 
 This example shows how to develop an application with popups.
-Please refer to its `README.md <com.microej.example.mwt.popup/README.md>`_ for more information.
+Please refer to its `README.md <popup/README.md>`_ for more information.
 
--------------------------------------
- com.microej.example.mwt.removewidget
--------------------------------------
+---------------
+ remove-widget
+---------------
 
 This example shows how to add and remove widgets in a container.
-Please refer to its `README.md <com.microej.example.mwt.removewidget/README.md>`_ for more information.
+Please refer to its `README.md <remove-widget/README.md>`_ for more information.
 
-----------------------------------------
- com.microej.example.mwt.slidecontainer
-----------------------------------------
+-----------------
+ slide-container
+-----------------
 
 This example shows a slide container that slides its children. It uses the content of the display to speed-up animations.
-Please refer to its `README.md <com.microej.example.mwt.slidecontainer/README.md>`_ for more information.
+Please refer to its `README.md <slide-container/README.md>`_ for more information.
 
-----------------------------------------
- com.microej.example.mwt.stackcontainer
-----------------------------------------
+-----------------
+ stack-container
+-----------------
 
 This example shows a stack container that stacks its children one above the other with animations. It uses the content of the display to speed-up animations.
-Please refer to its `README.md <com.microej.example.mwt.stackcontainer/README.md>`_ for more information.
+Please refer to its `README.md <stack-container/README.md>`_ for more information.
 
---------------------------------------
- com.microej.example.mwt.stashinggrid
---------------------------------------
+---------------
+ stashing-grid
+---------------
 
-This example shows a container that is able to stash its children. The layout is updated when a child is stashed.
-Please refer to its `README.md <com.microej.example.mwt.stashinggrid/README.md>`_ for more information.
+This example shows a container that can stash its children. The layout is updated when a child is stashed.
+Please refer to its `README.md <stashing-grid/README.md>`_ for more information.
 
---------------------------------------
- com.microej.example.mwt.virtualwatch
---------------------------------------
+---------------
+ virtual-watch
+---------------
 
 This example shows how to simulate a device (smartwatch here) on another device.
-Please refer to its `README.md <com.microej.example.mwt.virtualwatch/README.md>`_ for more information.
+Please refer to its `README.md <virtual-watch/README.md>`_ for more information.
 
 
 
