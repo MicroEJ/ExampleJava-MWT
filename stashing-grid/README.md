@@ -14,7 +14,7 @@ When requested to render, the grid only renders the children that are visible (s
 
 # Usage
 
-The main class is [StashingGridDemo.java](src/main/java/com/microej/example/mwt/StashingGridDemo.java).
+The main class is [StashingGridDemo.java](src/main/java/com/microej/example/mwt/stashing-grid/StashingGridDemo.java).
 
 # Requirements
 
@@ -31,5 +31,5 @@ _All dependencies are retrieved transitively by MicroEJ Module Manager_.
 None.
 
 ---  
-_Copyright 2021-2022 MicroEJ Corp. All rights reserved._  
+_Copyright 2021-2023 MicroEJ Corp. All rights reserved._  
 _Use of this source code is governed by a BSD-style license that can be found with this software._  

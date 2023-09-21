@@ -119,6 +119,20 @@ Please refer to its `README.md <stack-container/README.md>`_ for more informatio
 This example shows a container that can stash its children. The layout is updated when a child is stashed.
 Please refer to its `README.md <stashing-grid/README.md>`_ for more information.
 
+----------------------
+ theming-and-branding
+----------------------
+
+This example shows how to theme and brand your project. This includes whole stylesheet change, just changing the fonts or switching out a logo.
+Please refer to its `README.md <theming-and-branding/README.md>`_ for more information.
+
+------------
+ transition
+------------
+
+This example shows a container that performs transition between widgets.
+Please refer to its `README.md <transition/README.md>`_ for more information.
+
 ---------------
  virtual-watch
 ---------------
@@ -129,5 +143,5 @@ Please refer to its `README.md <virtual-watch/README.md>`_ for more information.
 
 
 .. ReStructuredText
-.. Copyright 2020-2022 MicroEJ Corp. All rights reserved.
+.. Copyright 2020-2023 MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.

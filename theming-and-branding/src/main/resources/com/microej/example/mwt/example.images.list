@@ -1,0 +1,12 @@
+# Copyright 2023 MicroEJ Corp. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be found with this software.
+
+/images/frame_condensed.png:ARGB8888
+/images/frame_normal.png:ARGB8888
+/images/mascote.png:ARGB4444
+/images/btn_long_normal.png:ARGB8888
+/images/btn_long_pressed.png:ARGB8888
+/images/btn_short_normal.png:ARGB8888
+/images/btn_short_pressed.png:ARGB8888
+/images/frame_transparent_normal.png:ARGB8888
+/images/frame_transparent_condensed.png:ARGB8888

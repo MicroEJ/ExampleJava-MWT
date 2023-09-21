@@ -8,6 +8,27 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
 --------------------
+ 2.5.0 - 2023-09-19
+--------------------
+
+Added
+=====
+
+- Add an example demonstrating a transition container - please refer to its `CHANGELOG.md <transition/CHANGELOG.md>`_.
+- Add an example demonstrating theming and branding - please refer to its `CHANGELOG.md <theming-and-branding/CHANGELOG.md>`_.
+
+Changed
+=======
+
+- Update the `stashing grid example <stashing-grid/CHANGELOG.md>`_ to ``1.0.2``.
+- Update the `virtual watch example <virtual-watch/CHANGELOG.md>`_ to ``1.0.2``.
+
+Fixed
+=====
+
+- Fix broken links in this file.
+
+--------------------
  2.4.2 - 2022-12-13
 --------------------
 
@@ -56,7 +77,7 @@ Added
 Added
 =====
 
-- Add an example demonstrating a context sensitive container - please refer to its `CHANGELOG.md <context-sensitive/CHANGELOG.md>`_.
+- Add an example demonstrating a context sensitive container - please refer to its `CHANGELOG.md <context-sensitive-container/CHANGELOG.md>`_.
 - Add an example demonstrating the usage of a container that can mask its children - please refer to its `CHANGELOG.md <masking-grid/CHANGELOG.md>`_.
 - Add an example demonstrating how to add and remove widgets within a container - please refer to its `CHANGELOG.md <remove-widget/CHANGELOG.md>`_.
 - Add an example demonstrating a stack container - please refer to its `CHANGELOG.md <stack-container/CHANGELOG.md>`_.
@@ -86,7 +107,7 @@ Added
 - Add an example demonstrating the usage of a pool of image buffers - please refer to its `CHANGELOG.md <buffered-image-pool/CHANGELOG.md>`_.
 - Add an example demonstrating the usage of popups - please refer to its `CHANGELOG.md <popup/CHANGELOG.md>`_.
 - Add an example demonstrating the simulation of a device (smartwatch) on another device - please refer to its `CHANGELOG.md <virtual-watch/CHANGELOG.md>`_.
-- Add an example demonstrating a drag'n'drop in a container - please refer to its `CHANGELOG.md <drag-n-drop/CHANGELOG.md>`_.
+- Add an example demonstrating a drag'n'drop in a container - please refer to its `CHANGELOG.md <drag-and-drop/CHANGELOG.md>`_.
 
 --------------------
  2.1.3 - 2021-05-10
@@ -193,5 +214,5 @@ Added
 - Add a sliding widget example.
 
 .. ReStructuredText
-.. Copyright 2020-2022 MicroEJ Corp. All rights reserved.
+.. Copyright 2020-2023 MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.

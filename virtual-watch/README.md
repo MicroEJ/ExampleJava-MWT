@@ -15,7 +15,7 @@ The value is modified by the commands (sent by the virtual buttons) or by the mi
 
 # Usage
 
-The main class is [VirtualWatchDemo.java](src/main/java/com/microej/example/mwt/popup/VirtualWatchDemo.java).
+The main class is [VirtualWatchDemo.java](src/main/java/com/microej/example/mwt/virtual-watch/VirtualWatchDemo.java).
 
 # Requirements
 
@@ -36,5 +36,5 @@ N/A
 None.
 
 ---  
-_Copyright 2021-2022 MicroEJ Corp. All rights reserved._  
+_Copyright 2021-2023 MicroEJ Corp. All rights reserved._  
 _Use of this source code is governed by a BSD-style license that can be found with this software._  

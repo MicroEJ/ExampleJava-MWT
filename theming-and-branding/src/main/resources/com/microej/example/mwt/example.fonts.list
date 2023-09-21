@@ -1,0 +1,10 @@
+# Copyright 2023 MicroEJ Corp. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be found with this software.
+
+/fonts/barlow-Cond_14pt_400.ejf::4
+/fonts/barlow-Cond_18pt_400.ejf::4
+/fonts/roboto_18px-400.ejf::4
+/fonts/roboto_24px-500.ejf::4
+/fonts/SourceSansPro_12px-400.ejf::4
+/fonts/SourceSansPro_19px-300.ejf::4
+/fonts/SourceSansPro_22px-400.ejf::4
