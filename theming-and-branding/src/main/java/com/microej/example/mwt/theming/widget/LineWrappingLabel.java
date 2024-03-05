@@ -10,8 +10,8 @@ import ej.microui.display.GraphicsContext;
 import ej.mwt.Widget;
 import ej.mwt.style.Style;
 import ej.mwt.util.Size;
-import ej.widget.util.render.StringPainter;
-import ej.widget.util.render.TextHelper;
+import ej.widget.render.StringPainter;
+import ej.widget.render.TextHelper;
 
 /**
  * A label is a widget that displays a text.

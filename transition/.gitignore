@@ -1,4 +1,10 @@
-target~
-bin
-src-adpgenerated
-com.*
+.gradle
+.idea
+.vscode
+.DS_Store
+.settings
+.project
+.classpath
+.sonar/
+bin/
+build/

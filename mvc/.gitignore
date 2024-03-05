@@ -1,3 +1,10 @@
-/bin/
-/target~/
-/com.microej.example.mwt.mvc.ExampleMVC/
+.gradle
+.idea
+.vscode
+.DS_Store
+.settings
+.project
+.classpath
+.sonar/
+bin/
+build/

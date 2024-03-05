@@ -1,7 +1,7 @@
 /*
  * Java
  *
- * Copyright 2021-2022 MicroEJ Corp. All rights reserved.
+ * Copyright 2021-2023 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.slidecontainer;
@@ -23,8 +23,8 @@ import ej.mwt.animation.Animator;
 import ej.mwt.event.DesktopEventGenerator;
 import ej.mwt.event.PointerEventDispatcher;
 import ej.mwt.util.Size;
-import ej.widget.util.motion.MotionAnimation;
-import ej.widget.util.motion.MotionAnimationListener;
+import ej.widget.motion.MotionAnimation;
+import ej.widget.motion.MotionAnimationListener;
 
 /**
  * A slide container holds several children.
@@ -166,9 +166,10 @@ public class SlideContainer extends Container {
 		this.releasedAnimation = new MotionAnimation(getAnimator(), motion, new MotionAnimationListener() {
 			@Override
 			public void tick(int value, boolean finished) {
-				updatePosition(value, leftChild, rightChild);
 				if (finished) {
 					restore();
+				} else {
+					updatePosition(value, leftChild, rightChild);
 				}
 			}
 		});
@@ -323,7 +324,7 @@ public class SlideContainer extends Container {
 			this.pressed = true;
 			this.previousX = pointerX;
 			this.previousY = pointerY;
-			this.draggedPosition = this.position;
+			this.draggedPosition = 0;
 		} else {
 			this.pressed = false;
 		}

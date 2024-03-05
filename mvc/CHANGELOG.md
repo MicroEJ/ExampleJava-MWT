@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.0.0] - 2024-03-05
+
+### Changed
+
+- Migrate to gradle.
+
 ## [4.0.5] - 2022-12-13
 
 ### Changed
@@ -46,7 +52,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-  - Use null analysis annotations.
+- Use null analysis annotations.
 
 ## [3.0.1] - 2018-10-10
 
@@ -83,5 +89,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial revision.
 
 ---  
-_Copyright 2016-2022 MicroEJ Corp. All rights reserved._  
+_Copyright 2016-2024 MicroEJ Corp. All rights reserved._  
 _Use of this source code is governed by a BSD-style license that can be found with this software._  

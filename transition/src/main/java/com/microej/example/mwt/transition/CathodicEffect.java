@@ -12,8 +12,8 @@ import ej.microui.display.Painter;
 import ej.motion.Motion;
 import ej.motion.quad.QuadEaseInOutFunction;
 import ej.mwt.animation.Animator;
-import ej.widget.util.motion.MotionAnimation;
-import ej.widget.util.motion.MotionAnimationListener;
+import ej.widget.motion.MotionAnimation;
+import ej.widget.motion.MotionAnimationListener;
 
 /**
  * Makes the new widget appear by growing its visible zone starting by the center.

@@ -1,7 +1,7 @@
 /*
  * Java
  *
- * Copyright 2021-2022 MicroEJ Corp. All rights reserved.
+ * Copyright 2021-2023 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.stackcontainer;
@@ -23,8 +23,8 @@ import ej.mwt.animation.Animator;
 import ej.mwt.event.DesktopEventGenerator;
 import ej.mwt.event.PointerEventDispatcher;
 import ej.mwt.util.Size;
-import ej.widget.util.motion.MotionAnimation;
-import ej.widget.util.motion.MotionAnimationListener;
+import ej.widget.motion.MotionAnimation;
+import ej.widget.motion.MotionAnimationListener;
 
 /**
  * A stack container holds several children on top of each other.
@@ -161,9 +161,10 @@ public class StackContainer extends Container {
 		this.releasedAnimation = new MotionAnimation(getDesktop().getAnimator(), motion, new MotionAnimationListener() {
 			@Override
 			public void tick(int value, boolean finished) {
-				updatePosition(value, child);
 				if (finished) {
 					restore();
+				} else {
+					updatePosition(value, child);
 				}
 			}
 		});
@@ -206,6 +207,7 @@ public class StackContainer extends Container {
 			// "Move" the display from the previous position to the new one.
 			int shift = this.position - this.previousPosition;
 			int copyWidth = contentWidth - (shift > 0 ? this.position : this.previousPosition);
+			g.setClip(contentX + this.position, contentY, copyWidth, contentHeight);
 			Painter.drawDisplayRegion(g, contentX + this.previousPosition, contentY, copyWidth, contentHeight,
 					contentX + this.position, contentY);
 			// Draws only the modified part of the container and its children.
@@ -215,7 +217,7 @@ public class StackContainer extends Container {
 				g.setClip(contentX + this.previousPosition, contentY, shift, contentHeight);
 			} else {
 				// The top widget is moved to the left.
-				// Draw the part of the top widget previously outside of the container.
+				// Draw the part of the top widget previously outside the container.
 				g.setClip(contentX + contentWidth + shift, contentY, -shift, contentHeight);
 			}
 			super.render(g);
@@ -318,7 +320,7 @@ public class StackContainer extends Container {
 			this.pressed = true;
 			this.previousX = pointerX;
 			this.previousY = pointerY;
-			this.draggedPosition = this.position;
+			this.draggedPosition = 0;
 		} else {
 			this.pressed = false;
 		}

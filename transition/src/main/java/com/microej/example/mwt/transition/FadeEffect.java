@@ -12,8 +12,8 @@ import ej.microui.display.Painter;
 import ej.motion.Motion;
 import ej.motion.quad.QuadEaseInOutFunction;
 import ej.mwt.animation.Animator;
-import ej.widget.util.motion.MotionAnimation;
-import ej.widget.util.motion.MotionAnimationListener;
+import ej.widget.motion.MotionAnimation;
+import ej.widget.motion.MotionAnimationListener;
 
 /**
  * Make the new widget appear with a fade in.

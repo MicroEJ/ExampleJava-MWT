@@ -1,13 +1,9 @@
-.. image:: https://shields.microej.com/endpoint?url=https://repository.microej.com/packages/badges/sdk_5.4.json
-   :alt: sdk_5.4 badge
+.. image:: https://shields.microej.com/endpoint?url=https://repository.microej.com/packages/badges/sdk_6.0.json
+   :alt: SDK 6 badge
    :align: left
 
-.. image:: https://shields.microej.com/endpoint?url=https://repository.microej.com/packages/badges/arch_7.12.json
-   :alt: arch_7.12 badge
-   :align: left
-   
 .. image:: https://shields.microej.com/endpoint?url=https://repository.microej.com/packages/badges/gui_3.json
-   :alt: gui_3 badge
+   :alt: GUI 3 badge
    :align: left
 
 ==========
@@ -143,5 +139,5 @@ Please refer to its `README.md <virtual-watch/README.md>`_ for more information.
 
 
 .. ReStructuredText
-.. Copyright 2020-2023 MicroEJ Corp. All rights reserved.
+.. Copyright 2020-2024 MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.

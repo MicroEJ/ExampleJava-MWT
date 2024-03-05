@@ -1,7 +1,7 @@
 /*
  * Java
  *
- * Copyright 2021-2022 MicroEJ Corp. All rights reserved.
+ * Copyright 2021-2023 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.bufferedimagepool;
@@ -15,8 +15,8 @@ import ej.motion.quart.QuartEaseOutFunction;
 import ej.mwt.Container;
 import ej.mwt.Widget;
 import ej.mwt.util.Size;
-import ej.widget.util.motion.MotionAnimation;
-import ej.widget.util.motion.MotionAnimationListener;
+import ej.widget.motion.MotionAnimation;
+import ej.widget.motion.MotionAnimationListener;
 
 /**
  * Container executing a transition when its content is changed.

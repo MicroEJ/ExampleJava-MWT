@@ -1,7 +1,7 @@
 /*
  * Java
  *
- * Copyright 2021-2022 MicroEJ Corp. All rights reserved.
+ * Copyright 2021-2023 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.slidecontainer;
@@ -124,8 +124,8 @@ public class SlideContainerDemo {
 		style.setBackground(NoBackground.NO_BACKGROUND);
 
 		style = stylesheet.getSelectorStyle(new TypeSelector(SlideContainer.class));
-		style.setPadding(new UniformOutline(PADDING_MARGIN));
-		style.setBackground(new RectangularBackground(CONCRETE_BLACK_75));
+		style.setBackground(NoBackground.NO_BACKGROUND);
+		style.setBorder(new RectangularBorder(CONCRETE_BLACK_75, PADDING_MARGIN));
 
 		style = stylesheet.getSelectorStyle(new ClassSelector(PAGE_CONTAINER));
 		style.setBorder(new RectangularBorder(AMBER, PADDING_MARGIN));

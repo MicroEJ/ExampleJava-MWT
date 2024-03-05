@@ -1,7 +1,7 @@
 /*
  * Java
  *
- * Copyright 2021-2022 MicroEJ Corp. All rights reserved.
+ * Copyright 2021-2023 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.virtualwatch;
@@ -20,7 +20,7 @@ import ej.mwt.event.PointerEventDispatcher;
 import ej.mwt.style.Style;
 import ej.mwt.util.Rectangle;
 import ej.mwt.util.Size;
-import ej.widget.util.render.ImagePainter;
+import ej.widget.render.ImagePainter;
 
 /**
  * A virtual button is a widget that displays an image and reacts to click events.
