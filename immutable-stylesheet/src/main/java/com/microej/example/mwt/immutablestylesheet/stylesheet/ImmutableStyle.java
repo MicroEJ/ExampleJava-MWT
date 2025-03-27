@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 MicroEJ Corp. All rights reserved.
+ * Copyright 2019-2024 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.immutablestylesheet.stylesheet;
@@ -27,8 +27,8 @@ public class ImmutableStyle {
 	/* package */ final Object[] extraFields;
 	/* package */ final short map;
 
-	// Never used because instances are immutable but necessary to compile.
-	private ImmutableStyle(ImmutableStyle style) {
+	private ImmutableStyle(ImmutableStyle style) { // NOSONAR Never used because instances are immutable but necessary
+													// to compile.
 		this.dimension = style.dimension;
 		this.horizontalAlignment = style.horizontalAlignment;
 		this.verticalAlignment = style.verticalAlignment;

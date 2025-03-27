@@ -1,7 +1,7 @@
 /*
  * Java
  *
- * Copyright 2023 MicroEJ Corp. All rights reserved.
+ * Copyright 2023-2024 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.transition;
@@ -51,23 +51,29 @@ public class CathodicEffect implements TransitionEffect {
 		int middleY = (contentHeight - REMAINING_HEIGHT) / 2;
 		if (animationStep < middleY) {
 			int animationHeight = animationStep - previousAnimationStep;
+			g.setClip(0, previousAnimationStep, contentWidth, animationHeight);
 			Painter.drawImageRegion(g, screenshot, 0, previousAnimationStep, contentWidth, animationHeight, 0,
 					previousAnimationStep);
+			g.setClip(0, contentHeight - animationStep, contentWidth, animationHeight);
 			Painter.drawImageRegion(g, screenshot, 0, contentHeight - animationStep, contentWidth, animationHeight, 0,
 					contentHeight - animationStep);
 		} else {
 			if (previousAnimationStep < middleY) {
 				int animationHeight = middleY - previousAnimationStep;
+				g.setClip(0, previousAnimationStep, contentWidth, animationHeight);
 				Painter.drawImageRegion(g, screenshot, 0, previousAnimationStep, contentWidth, animationHeight, 0,
 						previousAnimationStep);
+				g.setClip(0, contentHeight - middleY, contentWidth, animationHeight);
 				Painter.drawImageRegion(g, screenshot, 0, contentHeight - middleY, contentWidth, animationHeight, 0,
 						contentHeight - middleY);
 			}
 			int previousAnimationX = Math.max(previousAnimationStep - middleY, 0);
 			int animationX = animationStep - middleY;
 			int animationWidth = animationX - previousAnimationX;
+			g.setClip(previousAnimationX, middleY, animationWidth, REMAINING_HEIGHT);
 			Painter.drawImageRegion(g, screenshot, previousAnimationX, middleY, animationWidth, REMAINING_HEIGHT,
 					previousAnimationX, middleY);
+			g.setClip(contentWidth - animationX, middleY, animationWidth, REMAINING_HEIGHT);
 			Painter.drawImageRegion(g, screenshot, contentWidth - animationX, middleY, animationWidth, REMAINING_HEIGHT,
 					contentWidth - animationX, middleY);
 		}

@@ -1,7 +1,7 @@
 /*
  * Java
  *
- * Copyright 2023 MicroEJ Corp. All rights reserved.
+ * Copyright 2023-2024 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.transition;
@@ -75,6 +75,7 @@ public class BandsEffect implements TransitionEffect {
 			int intBandY = (int) bandY;
 			bandY += bandHeight;
 			int intBandHeight = (int) bandY - intBandY;
+			g.setClip(this.bandsPosition[i], intBandY, contentWidth, intBandHeight);
 			Painter.drawImageRegion(g, screenshot, 0, intBandY, contentWidth, intBandHeight, this.bandsPosition[i],
 					intBandY);
 		}

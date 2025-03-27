@@ -1,10 +1,12 @@
 /*
  * Java
  *
- * Copyright 2021-2022 MicroEJ Corp. All rights reserved.
+ * Copyright 2021-2024 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.bufferedimagepool;
+
+import java.util.Random;
 
 import ej.annotation.Nullable;
 import ej.bon.Timer;
@@ -94,9 +96,11 @@ public class BufferedImagePoolDemo {
 		// Generate random values periodically to feed the currently shown histogram.
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
+			final Random random = new Random(); // NOSONAR Safe use of random.
+
 			@Override
 			public void run() {
-				int value = (int) (Math.random() * MAX_VALUE);
+				int value = random.nextInt(MAX_VALUE);
 				Histogram histogram = BufferedImagePoolDemo.this.histogram;
 				if (histogram != null) {
 					histogram.addValue(value);

@@ -8,6 +8,31 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
 --------------------
+ 3.0.1 - 2025-03-27
+--------------------
+
+Changed
+=======
+
+- Update the `attribute selector example <attribute-selectors/CHANGELOG.md>`_ to ``2.0.1``.
+- Update the `buffered image pool example <buffered-image-pool/CHANGELOG.md>`_ to ``2.0.1``.
+- Update the `context-sensitive container example <context-sensitive-container/CHANGELOG.md>`_ to ``2.0.1``.
+- Update the `drag'n'drop example <drag-and-drop/CHANGELOG.md>`_ to ``2.0.1``.
+- Update the `focus management example <focus/CHANGELOG.md>`_ to ``2.0.1``.
+- Update the `immutable stylesheet example <immutable-stylesheet/CHANGELOG.md>`_ to ``2.0.1``.
+- Update the `lazy stylesheet example <lazy-stylesheet/CHANGELOG.md>`_ to ``2.0.1``.
+- Update the `masking grid example <masking-grid/CHANGELOG.md>`_ to ``2.0.1``.
+- Update the `MVC example <mvc/CHANGELOG.md>`_ to ``5.0.1``.
+- Update the `popup example <popup/CHANGELOG.md>`_ to ``2.0.1``.
+- Update the `widget removal example <remove-widget/CHANGELOG.md>`_ to ``2.0.1``.
+- Update the `slide container example <slide-container/CHANGELOG.md>`_ to ``2.0.1``.
+- Update the `stack container example <stack-container/CHANGELOG.md>`_ to ``2.0.1``.
+- Update the `stashing grid example <stashing-grid/CHANGELOG.md>`_ to ``2.0.1``.
+- Update the `theming and branding example <theming-and-branding/CHANGELOG.md>`_ to ``2.0.1``.
+- Update the `transition example <transition/CHANGELOG.md>`_ to ``2.0.1``.
+- Update the `virtual watch example <virtual-watch/CHANGELOG.md>`_ to ``2.0.1``.
+
+--------------------
  3.0.0 - 2024-03-05
 --------------------
 
@@ -239,5 +264,5 @@ Added
 - Add a sliding widget example.
 
 .. ReStructuredText
-.. Copyright 2020-2024 MicroEJ Corp. All rights reserved.
+.. Copyright 2020-2025 MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.

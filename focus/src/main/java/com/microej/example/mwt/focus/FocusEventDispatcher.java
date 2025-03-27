@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2022 MicroEJ Corp. All rights reserved.
+ * Copyright 2020-2024 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.focus;
@@ -117,7 +117,6 @@ public class FocusEventDispatcher extends PointerEventDispatcher {
 			if (!getDesktop().containsWidget(focusedWidget)) {
 				// Widget is no more attached to the desktop.
 				focus(null);
-				focusedWidget = null;
 			} else {
 				return sendEventToWidget(focusedWidget, event);
 			}

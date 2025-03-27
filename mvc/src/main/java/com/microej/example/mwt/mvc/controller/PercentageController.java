@@ -1,5 +1,5 @@
 /*
- * Copyright 2009-2022 MicroEJ Corp. All rights reserved.
+ * Copyright 2009-2024 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.mvc.controller;
@@ -23,7 +23,7 @@ public class PercentageController implements EventHandler {
 	private final PercentageModel model;
 
 	private static final int MINIMUM_SIZE = 20;
-	private static final int TOLERANCE = 10;
+	private static final float TOLERANCE = 0.014f;
 
 	private boolean pressed;
 	private int previousX;
@@ -76,15 +76,11 @@ public class PercentageController implements EventHandler {
 			// The event has been managed
 			return true;
 		} else if (type == Pointer.EVENT_TYPE) {
-			try {
-				Pointer pointer = (Pointer) Event.getGenerator(event);
-				receiveMouseEvent(pointer.getX(), pointer.getY(), event);
+			Pointer pointer = (Pointer) Event.getGenerator(event);
+			receiveMouseEvent(pointer, pointer.getX(), pointer.getY(), event);
 
-				// The event has been managed
-				return true;
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			// The event has been managed
+			return true;
 		} else {
 			this.model.random();
 		}
@@ -93,12 +89,12 @@ public class PercentageController implements EventHandler {
 		return false;
 	}
 
-	private void receiveMouseEvent(int px, int py, int event) {
+	private void receiveMouseEvent(Pointer pointer, int px, int py, int event) {
 		boolean repaintCursor = (px != this.previousX || py != this.previousY);
 
 		if (Buttons.isPressed(event)) {
 			// check pointer is over the cross (plus or minus TOLERANCE)
-			if (over(px, py, this.view.getXCross(), this.view.getYCross())) {
+			if (over(pointer, px, py, this.view.getXCross(), this.view.getYCross())) {
 				this.pressed = true;
 			}
 		} else if (Buttons.isReleased(event)) {
@@ -139,7 +135,8 @@ public class PercentageController implements EventHandler {
 		this.previousY = py;
 	}
 
-	private static boolean over(int px, int py, int x, int y) {
-		return (px >= x - TOLERANCE && px <= x + TOLERANCE && py >= y - TOLERANCE && py <= y + TOLERANCE);
+	private static boolean over(Pointer pointer, int px, int py, int x, int y) {
+		int tolerance = (int) ((pointer.getWidth() + pointer.getHeight()) * TOLERANCE);
+		return (px >= x - tolerance && px <= x + tolerance && py >= y - tolerance && py <= y + tolerance);
 	}
 }

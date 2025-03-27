@@ -1,19 +1,19 @@
 /*
  * Kotlin
  *
- * Copyright 2023-2024 MicroEJ Corp. All rights reserved.
+ * Copyright 2023-2025 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 
 plugins {
-	id("com.microej.gradle.application") version "0.15.0"
+	id("com.microej.gradle.application") version "1.1.0"
 }
 
 group = "com.microej.example.mwt"
-version = "5.0.0"
+version = "5.0.1"
 
 microej {
-	applicationMainClass = "com.microej.example.mwt.mvc.ExampleMVC"
+	applicationEntryPoint = "com.microej.example.mwt.mvc.ExampleMVC"
 }
 dependencies {
 	api("ej.api:edc:1.3.5")

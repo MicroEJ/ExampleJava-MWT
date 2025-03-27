@@ -1,7 +1,7 @@
 /*
  * Java
  *
- * Copyright 2023 MicroEJ Corp. All rights reserved.
+ * Copyright 2023-2024 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.transition;
@@ -55,8 +55,9 @@ public class GrowingEffect implements TransitionEffect {
 
 	@Override
 	public void render(GraphicsContext g, BufferedImage screenshot, int contentWidth, int contentHeight) {
-		int width = contentWidth * this.step / MAX;
-		int height = contentHeight * this.step / MAX;
+		float factor = (float) this.step / MAX;
+		int width = (int) (contentWidth * factor);
+		int height = (int) (contentHeight * factor);
 		int x = (contentWidth - width) / 2;
 		int y = (contentHeight - height) / 2;
 
@@ -67,8 +68,8 @@ public class GrowingEffect implements TransitionEffect {
 			alpha = GraphicsContext.OPAQUE;
 		}
 
-		TransformPainter.drawScaledImageNearestNeighbor(g, screenshot, x, y, (float) this.step / MAX,
-				(float) this.step / MAX, alpha);
+		g.setClip(x, y, width, height);
+		TransformPainter.drawScaledImageNearestNeighbor(g, screenshot, x, y, factor, factor, alpha);
 	}
 
 }

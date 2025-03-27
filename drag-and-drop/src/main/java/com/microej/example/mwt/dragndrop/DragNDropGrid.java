@@ -1,7 +1,7 @@
 /*
  * Java
  *
- * Copyright 2021-2023 MicroEJ Corp. All rights reserved.
+ * Copyright 2021-2024 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.dragndrop;
@@ -100,6 +100,8 @@ public class DragNDropGrid extends Grid {
 			case Buttons.RELEASED:
 				onPointerReleased();
 				break;
+			default:
+				// Nothing to do.
 			}
 		} else if (!this.dragging && type == DesktopEventGenerator.EVENT_TYPE
 				&& Event.getData(event) == PointerEventDispatcher.EXITED) {

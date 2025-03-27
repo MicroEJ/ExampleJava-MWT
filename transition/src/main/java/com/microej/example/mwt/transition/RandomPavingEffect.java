@@ -1,10 +1,12 @@
 /*
  * Java
  *
- * Copyright 2023 MicroEJ Corp. All rights reserved.
+ * Copyright 2023-2024 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.transition;
+
+import java.util.Random;
 
 import ej.microui.display.BufferedImage;
 import ej.microui.display.GraphicsContext;
@@ -18,6 +20,7 @@ import ej.mwt.animation.Animator;
 public class RandomPavingEffect implements TransitionEffect {
 
 	private static final int CUTS = 12;
+	private final Random random;
 
 	private boolean[] filled;
 	private int currentTileH;
@@ -28,6 +31,7 @@ public class RandomPavingEffect implements TransitionEffect {
 	 * Creates a random paving effect.
 	 */
 	public RandomPavingEffect() {
+		this.random = new Random(); // NOSONAR Safe use of random.
 		this.filled = new boolean[CUTS * CUTS];
 	}
 
@@ -58,7 +62,7 @@ public class RandomPavingEffect implements TransitionEffect {
 		}
 		int tileIndex;
 		do {
-			tileIndex = (int) (Math.random() * CUTS * CUTS);
+			tileIndex = this.random.nextInt(CUTS * CUTS);
 		} while (this.filled[tileIndex]);
 		this.filled[tileIndex] = true;
 		this.currentTileH = tileIndex / CUTS;
@@ -73,6 +77,7 @@ public class RandomPavingEffect implements TransitionEffect {
 		int tileX = this.currentTileH * tileWidth;
 		int tileY = this.currentTileV * tileHeight;
 
+		g.setClip(tileX, tileY, tileWidth, tileHeight);
 		Painter.drawImageRegion(g, screenshot, tileX, tileY, tileWidth, tileHeight, tileX, tileY);
 	}
 

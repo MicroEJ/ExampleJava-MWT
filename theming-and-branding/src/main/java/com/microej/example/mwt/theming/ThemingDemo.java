@@ -1,7 +1,7 @@
 /*
  *  Java
  *
- *  Copyright 2023 MicroEJ Corp. All rights reserved.
+ *  Copyright 2023-2024 MicroEJ Corp. All rights reserved.
  *  Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.theming;
@@ -65,7 +65,7 @@ public class ThemingDemo {
 		mainContainer.addChild(createDesignSelect());
 
 		// Color Select
-		mainContainer.addChild(createTextSelect(desktop));
+		mainContainer.addChild(createTextSelect());
 		split.addChild(mainContainer);
 
 		SimpleDock frameContent = new SimpleDock(LayoutOrientation.VERTICAL);
@@ -110,7 +110,7 @@ public class ThemingDemo {
 		return dock;
 	}
 
-	private static Widget createTextSelect(Desktop desktop) {
+	private static Widget createTextSelect() {
 		SimpleDock dock = new SimpleDock(LayoutOrientation.VERTICAL);
 		dock.addClassSelector(ClassSelectors.RADIO_GROUP_CONTAINER);
 		Label label = new Label("Text");//$NON-NLS-1$

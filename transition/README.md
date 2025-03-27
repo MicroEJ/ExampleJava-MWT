@@ -1,6 +1,7 @@
 # Overview
 
-This example shows a transition container that triggers effect between pages. It could be based on a pool of BufferedImages.
+This example shows a transition container that triggers effect between pages.
+It could be based on a pool of BufferedImages.
 
 # Requirements
 
@@ -27,9 +28,13 @@ Refer to the [Select a VEE Port](https://docs.microej.com/en/latest/SDK6UserGuid
 
 Configuration options can be found in: `configuration/common.properties`.
 
+The example is optimized for a WQVA (480x272) display with 16 bpp pixel format.
+The required [image heap](https://docs.microej.com/en/latest/ApplicationDeveloperGuide/UI/MicroUI/images.html#images-heap) should be adjusted according to the VEE Port used to run the sample.
+
 ## Run on simulator
 
 In IntelliJ IDEA or Android Studio:
+
 - Open the Gradle tool window by clicking on the elephant icon on the right side,
 - Expand the `Tasks` list,
 - From the `Tasks` list, expand the `microej` list,
@@ -44,6 +49,7 @@ Make sure to properly setup the VEE Port environment before going further.
 Refer to the VEE Port README for more information.
 
 In IntelliJ IDEA or Android Studio:
+
 - Open the Gradle tool window by clicking on the elephant on the right side,
 - Expand the `Tasks` list,
 - From the `Tasks` list, expand the `microej` list,

@@ -4,4 +4,7 @@
 buildWithGradle {
 	DOCKER_IMAGE = 'artifactory.cross:18084/microej/jdk11:1.1.2'
 	ARTIFACTS_DOMAIN = 'public'
+
+	CODE_ANALYSIS_RUN_IN_FEATURE = true
+	CODE_ANALYSIS_EXCLUDE_DIRECTORY_FROM_DUPLICATION_CHECKING = '**/*'
 }

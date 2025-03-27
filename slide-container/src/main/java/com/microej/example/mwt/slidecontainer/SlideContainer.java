@@ -1,7 +1,7 @@
 /*
  * Java
  *
- * Copyright 2021-2023 MicroEJ Corp. All rights reserved.
+ * Copyright 2021-2024 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.slidecontainer;
@@ -180,12 +180,13 @@ public class SlideContainer extends Container {
 		Animation draggedAnimation = this.draggedAnimation;
 		if (draggedAnimation != null) {
 			getAnimator().stopAnimation(draggedAnimation);
-			draggedAnimation = null;
+			this.draggedAnimation = null;
 		}
 		MotionAnimation releasedAnimation = this.releasedAnimation;
 		if (releasedAnimation != null) {
 			releasedAnimation.stop();
 			restore();
+			this.releasedAnimation = null;
 		}
 	}
 

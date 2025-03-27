@@ -13,6 +13,8 @@
 This repository provides a collection of MWT examples. Each example has its own Eclipse/MicroEJ project.
 Those examples are developed as standalone applications and as such can be run by following the associated instructions (see **README.md** file of each example).
 
+All the examples are optimized for a WQVA (480x272) display with 16 bpp pixel format.
+
 =========
  Details
 =========

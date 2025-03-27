@@ -1,5 +1,5 @@
 /*
- * Copyright 2009-2022 MicroEJ Corp. All rights reserved.
+ * Copyright 2009-2024 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.mvc.view;
@@ -33,7 +33,7 @@ public abstract class PercentageWidget extends Widget implements Observer {
 	 * @param model
 	 *            the model to follow.
 	 */
-	public PercentageWidget(PercentageModel model) {
+	protected PercentageWidget(PercentageModel model) {
 		this.model = model;
 	}
 

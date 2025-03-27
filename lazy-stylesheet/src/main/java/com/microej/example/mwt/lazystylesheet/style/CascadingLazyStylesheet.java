@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2022 MicroEJ Corp. All rights reserved.
+ * Copyright 2015-2024 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.lazystylesheet.style;
@@ -132,7 +132,6 @@ public class CascadingLazyStylesheet implements Stylesheet {
 		// Get the array in local to avoid synchronization (with add and remove).
 		SelectorStyle[] selectorsStyles = this.selectorsStyles;
 		SelectorStyle selectorStyle = new SelectorStyle(selector, factory);
-		// TODO manage several factories with the same selector?
 		int index = getIndex(selector, selectorsStyles);
 		// Add the selector at the first place to ensure order (last added is resolved first).
 		this.selectorsStyles = ArrayTools.insert(selectorsStyles, index, selectorStyle);

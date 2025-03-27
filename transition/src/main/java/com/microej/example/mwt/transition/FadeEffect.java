@@ -1,7 +1,7 @@
 /*
  * Java
  *
- * Copyright 2023 MicroEJ Corp. All rights reserved.
+ * Copyright 2023-2024 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 package com.microej.example.mwt.transition;
@@ -45,6 +45,8 @@ public class FadeEffect implements TransitionEffect {
 
 	@Override
 	public void render(GraphicsContext g, BufferedImage screenshot, int contentWidth, int contentHeight) {
+		// Force to restore the whole display.
+		Painter.writePixel(g, 0, 0);
 		Painter.drawImage(g, screenshot, 0, 0, this.alpha);
 	}
 }
